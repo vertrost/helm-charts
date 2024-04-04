@@ -25,6 +25,7 @@ then
   sed -i "s/${CURRENT_VERSION}/${NEO4J_VERSION}/g" "neo4j-reverse-proxy/Chart.yaml"
   sed -i "s/${CURRENT_VERSION}/${NEO4J_VERSION}/g" "neo4j-reverse-proxy/values.yaml"
 
+    git add "neo4j-shared-templates/Chart.yaml"
   	HELM_CHARTS_LIST=("neo4j-admin" "neo4j-reverse-proxy" "neo4j-standalone" "neo4j-cluster-core" "neo4j-cluster-read-replica" "neo4j-cluster-headless-service" "neo4j-cluster-loadbalancer" "neo4j-gcloud-pv" "neo4j-docker-desktop-pv")
   	for chart in "${HELM_CHARTS_LIST[@]}"
   	do
@@ -37,8 +38,3 @@ else
 	echo "Neo4j version is same !!"
   exit 1
 fi
-
-git commit -m "Updating version to ${NEO4J_VERSION}"
-git push
-git tag -m "Tagging ${NEO4J_VERSION}" -a ${NEO4J_VERSION}
-git push --tags
