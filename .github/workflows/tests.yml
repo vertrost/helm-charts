@@ -1,6 +1,7 @@
 name: Execute Tests for v4.4
 
 on:
+  push:
   workflow_dispatch:
     inputs:
       NEO4J_VERSION:
