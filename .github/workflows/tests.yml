@@ -340,10 +340,9 @@ jobs:
           export PACKAGE_SIGNING_KEY=${{ secrets.PACKAGE_SIGNING_KEY }}
           export PACKAGE_SIGNING_PASSPHRASE=${{ secrets.PACKAGE_SIGNING_PASSPHRASE }}
           ./bin/gcloud/package_upload
+
       - name: Update index.yaml
         run: |
-          git checkout dev
-          git pull
           ./bin/gcloud/index_yaml_update
 
       - name: Release Notes
