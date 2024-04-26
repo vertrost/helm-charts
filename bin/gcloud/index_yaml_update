@@ -8,8 +8,8 @@ shopt -s inherit_errexit
 NEO4J_VERSION="${NEO4J_VERSION:?NEO4J_VERSION is required}"
 # neo4j or neo4j-experimental
 HELM_REPO_NAME="${HELM_REPO_NAME:?HELM_REPO_NAME is required}"
-echo "sleeping for 100 seconds"
-sleep 100
+echo "sleeping for 300 seconds"
+sleep 300
 helm repo add neo4j "https://helm.neo4j.com/${HELM_REPO_NAME}"
 helm repo update
 
