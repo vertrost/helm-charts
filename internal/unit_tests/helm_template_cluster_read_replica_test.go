@@ -54,6 +54,8 @@ func TestReadReplicaInternalPorts(t *testing.T) {
 		7474: 7474,
 		7688: 7688,
 		6000: 6000,
+		5000: 5000,
+		7000: 7000,
 	}
 
 	readReplica := model.NewReleaseName("foo")
@@ -64,7 +66,7 @@ func TestReadReplicaInternalPorts(t *testing.T) {
 	}
 
 	internalService := readReplicaManifest.OfTypeWithName(&v1.Service{}, readReplica.InternalServiceName()).(*v1.Service)
-
+	assert.Equal(t, internalService.Spec.Type, v1.ServiceTypeClusterIP)
 	checkPortsMatchExpected(t, expectedPorts, internalService)
 }
 
