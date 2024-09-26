@@ -3,7 +3,6 @@ description: File a bug report
 title: "[Bug]: "
 labels: ["bug"]
 assignees:
-  - harshitsinghvi22
   - bfeshti
 body:
   - type: markdown
