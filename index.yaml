@@ -15,8 +15,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -38,8 +36,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -61,8 +57,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -84,8 +78,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -107,8 +99,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -130,8 +120,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -153,8 +141,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -176,8 +162,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -199,8 +183,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -222,8 +204,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -245,8 +225,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -268,8 +246,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -291,8 +267,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -314,8 +288,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -337,8 +309,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -360,8 +330,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -383,8 +351,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -406,8 +372,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -429,8 +393,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -452,8 +414,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -475,8 +435,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -498,8 +456,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -521,8 +477,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j
     sources:
     - https://github.com/neo4j/neo4j
@@ -567,8 +521,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -590,8 +542,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -613,8 +563,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -636,8 +584,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -659,8 +605,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -682,8 +626,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -705,8 +647,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -728,8 +668,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -751,8 +689,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -774,8 +710,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -797,8 +731,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -820,8 +752,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -843,8 +773,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -866,8 +794,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -889,8 +815,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -912,8 +836,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -935,8 +857,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -958,8 +878,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -981,8 +899,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1004,8 +920,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1027,8 +941,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1050,8 +962,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1073,8 +983,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1096,8 +1004,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1119,8 +1025,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1142,8 +1046,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1165,8 +1067,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1188,8 +1088,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1211,8 +1109,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1234,8 +1130,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1257,8 +1151,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1280,8 +1172,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1303,8 +1193,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-admin
     sources:
     - https://github.com/neo4j/neo4j
@@ -1331,8 +1219,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1358,8 +1244,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1385,8 +1269,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1412,8 +1294,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1439,8 +1319,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1466,8 +1344,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1493,8 +1369,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1520,8 +1394,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1547,8 +1419,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1574,8 +1444,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1601,8 +1469,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1628,8 +1494,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1655,8 +1519,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1682,8 +1544,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1709,8 +1569,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1736,8 +1594,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1763,8 +1619,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1790,8 +1644,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1817,8 +1669,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1844,8 +1694,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -1871,8 +1719,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-core
     sources:
     - https://github.com/neo4j/neo4j
@@ -2042,8 +1888,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2069,8 +1913,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2096,8 +1938,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2123,8 +1963,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2150,8 +1988,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2177,8 +2013,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2204,8 +2038,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2231,8 +2063,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2258,8 +2088,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2285,8 +2113,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2312,8 +2138,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2339,8 +2163,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2366,8 +2188,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2393,8 +2213,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2420,8 +2238,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2447,8 +2263,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2474,8 +2288,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2501,8 +2313,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2528,8 +2338,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2555,8 +2363,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2582,8 +2388,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -2753,8 +2557,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -2780,8 +2582,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -2807,8 +2607,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -2834,8 +2632,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -2861,8 +2657,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -2888,8 +2682,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -2915,8 +2707,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -2942,8 +2732,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -2969,8 +2757,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -2996,8 +2782,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -3023,8 +2807,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -3050,8 +2832,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -3077,8 +2857,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -3104,8 +2882,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -3131,8 +2907,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -3158,8 +2932,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -3185,8 +2957,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -3212,8 +2982,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -3239,8 +3007,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -3266,8 +3032,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -3293,8 +3057,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -3464,8 +3226,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3491,8 +3251,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3518,8 +3276,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3545,8 +3301,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3572,8 +3326,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3599,8 +3351,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3626,8 +3376,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3653,8 +3401,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3680,8 +3426,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3707,8 +3451,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3734,8 +3476,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3761,8 +3501,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3788,8 +3526,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3815,8 +3551,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3842,8 +3576,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3869,8 +3601,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3896,8 +3626,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3923,8 +3651,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3950,8 +3676,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -3977,8 +3701,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -4004,8 +3726,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-cluster-read-replica
     sources:
     - https://github.com/neo4j/neo4j
@@ -4171,8 +3891,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4194,8 +3912,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4217,8 +3933,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4240,8 +3954,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4263,8 +3975,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4286,8 +3996,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4309,8 +4017,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4332,8 +4038,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4355,8 +4059,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4378,8 +4080,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4401,8 +4101,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4424,8 +4122,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4447,8 +4143,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4470,8 +4164,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4493,8 +4185,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4516,8 +4206,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4539,8 +4227,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4562,8 +4248,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4585,8 +4269,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4608,8 +4290,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4631,8 +4311,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4654,8 +4332,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4677,8 +4353,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-headless-service
     sources:
     - https://github.com/neo4j/neo4j
@@ -4723,8 +4397,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -4746,8 +4418,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -4769,8 +4439,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -4792,8 +4460,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -4815,8 +4481,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -4838,8 +4502,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -4861,8 +4523,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -4884,8 +4544,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -4907,8 +4565,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -4930,8 +4586,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -4953,8 +4607,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -4976,8 +4628,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-loadbalancer
     sources:
     - https://github.com/neo4j/neo4j
@@ -5000,8 +4650,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5023,8 +4671,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5046,8 +4692,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5069,8 +4713,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5092,8 +4734,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5115,8 +4755,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5138,8 +4776,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5161,8 +4797,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5184,8 +4818,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5207,8 +4839,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5230,8 +4860,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5253,8 +4881,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5276,8 +4902,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5299,8 +4923,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5322,8 +4944,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5345,8 +4965,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5368,8 +4986,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5391,8 +5007,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5414,8 +5028,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5437,8 +5049,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5460,8 +5070,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5483,8 +5091,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5506,8 +5112,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-persistent-volume
     sources:
     - https://github.com/neo4j/neo4j
@@ -5552,8 +5156,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5575,8 +5177,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5598,8 +5198,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5621,8 +5219,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5644,8 +5240,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5667,8 +5261,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5690,8 +5282,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5713,8 +5303,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5736,8 +5324,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5759,8 +5345,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5782,8 +5366,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5805,8 +5387,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5828,8 +5408,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5851,8 +5429,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5874,8 +5450,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5897,8 +5471,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5920,8 +5492,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5943,8 +5513,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5966,8 +5534,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -5989,8 +5555,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -6012,8 +5576,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -6035,8 +5597,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -6058,8 +5618,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-reverse-proxy
     sources:
     - https://github.com/neo4j/neo4j
@@ -6086,8 +5644,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6113,8 +5669,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6140,8 +5694,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6167,8 +5719,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6194,8 +5744,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6221,8 +5769,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6248,8 +5794,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6275,8 +5819,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6302,8 +5844,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6329,8 +5869,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6356,8 +5894,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6383,8 +5919,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6410,8 +5944,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6437,8 +5969,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6464,8 +5994,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6491,8 +6019,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6518,8 +6044,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6545,8 +6069,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6572,8 +6094,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6599,8 +6119,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j
@@ -6626,8 +6144,6 @@ entries:
     maintainers:
     - email: bledi.feshti@neotechnology.com
       name: bfeshti
-    - email: harshit.singhvi@neotechnology.com
-      name: harshitsinghvi22
     name: neo4j-standalone
     sources:
     - https://github.com/neo4j/neo4j

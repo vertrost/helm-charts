@@ -479,7 +479,7 @@ jobs:
       - run-enterprise-tests
       - run-enterprise-tests-redhat
     runs-on: ubuntu-latest
-    if: ${{ inputs.RELEASE && github.ref_name == 'dev' && success() && github.event_name == 'workflow_dispatch' && (github.actor == 'harshitsinghvi22' || github.actor == 'bfeshti') }}
+    if: ${{ inputs.RELEASE && github.ref_name == 'dev' && success() && github.event_name == 'workflow_dispatch' && (github.actor == 'bfeshti') }}
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -537,7 +537,7 @@ jobs:
       - run-enterprise-tests-redhat
       - build-reverseproxy-backup-release-image
     runs-on: ubuntu-latest
-    if: ${{ inputs.RELEASE && github.ref_name == 'dev' && success() && github.event_name == 'workflow_dispatch' && (github.actor == 'harshitsinghvi22' || github.actor == 'bfeshti') }}
+    if: ${{ inputs.RELEASE && github.ref_name == 'dev' && success() && github.event_name == 'workflow_dispatch' && (github.actor == 'bfeshti') }}
     env:
       NEO4J_VERSION: ${{ inputs.NEO4J_VERSION }}
       HELM_REPO_NAME: ${{ vars.HELM_REPO_NAME }}
