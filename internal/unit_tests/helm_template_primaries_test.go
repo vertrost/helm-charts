@@ -995,6 +995,8 @@ func TestClusterEnabledConfigMap(t *testing.T) {
 	assert.Contains(t, defaultConfig.Data, "dbms.routing.default_router")
 	assert.Contains(t, defaultConfig.Data, "dbms.routing.client_side.enforce_for_domains")
 	assert.Contains(t, defaultConfig.Data, "dbms.routing.enabled")
+	assert.Contains(t, defaultConfig.Data, "dbms.cluster.discovery.version")
+	assert.Contains(t, defaultConfig.Data, "dbms.kubernetes.discovery.v2.service_port_name")
 	assert.Contains(t, defaultConfig.Data, "server.bolt.advertised_address")
 	assert.Contains(t, defaultConfig.Data, "server.discovery.advertised_address")
 	assert.Contains(t, defaultConfig.Data, "server.cluster.raft.advertised_address")
