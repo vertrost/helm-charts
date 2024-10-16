@@ -1,13 +1,16 @@
-FROM golang:1.22-alpine
-RUN apk --no-cache add curl \
-    && addgroup --gid 7474 --system neo4j \
-    && adduser --uid 7474 --system --no-create-home --home "/go" --ingroup neo4j neo4j
-WORKDIR reverse-proxy
+FROM golang:1.22-alpine AS build
+WORKDIR /go/reverse-proxy
 COPY reverse-proxy/operations operations/
 COPY reverse-proxy/proxy proxy/
 COPY reverse-proxy/go.mod go.mod
 COPY reverse-proxy/main.go main.go
 RUN go mod download && go mod verify \
-    && go build -v -o reverseproxy_linux main.go \
-    && chown -R neo4j:neo4j /go && chmod -R 777 /go
+    && go build -v -o reverseproxy_linux main.go
+
+FROM alpine:3.20.2 AS run
+RUN addgroup --gid 7474 --system neo4j \
+    && adduser --uid 7474 --system --no-create-home neo4j
+WORKDIR /reverse-proxy
+COPY --from=build --chown=neo4j:neo4j --chmod=777 /go/reverse-proxy/reverseproxy_linux reverseproxy_linux
+USER neo4j
 CMD ["./reverseproxy_linux"]
