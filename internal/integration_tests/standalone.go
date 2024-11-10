@@ -1075,7 +1075,7 @@ func InstallReverseProxyHelmChart(t *testing.T, standaloneReleaseName model.Rele
 	assert.NotNil(t, pods, "no reverse proxy pods found")
 	assert.Equal(t, len(pods.Items), 1, "more than 1 reverse proxy pods found")
 
-	cmd := []string{"ls", "-lst", "/go"}
+	cmd := []string{"ls", "-lst", "/reverse-proxy"}
 	stdoutCmd, _, err := ExecInPod(standaloneReleaseName, cmd, pods.Items[0].Name)
 	assert.NoError(t, err, "cannot exec in reverse proxy pod")
 	assert.NotContains(t, stdoutCmd, "root")
