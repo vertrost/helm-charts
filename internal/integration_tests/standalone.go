@@ -1089,9 +1089,9 @@ func InstallReverseProxyHelmChart(t *testing.T, standaloneReleaseName model.Rele
 	assert.NotEmpty(t, ingressIP, "no ingress ip found")
 
 	ingressURL := fmt.Sprintf("https://%s:443", ingressIP)
-	stdout, _, err := RunCommand(exec.Command("curl", "-ivk", ingressURL))
+	stdout, _, err := RunCommand(exec.Command("wget", "-qO-", "--no-check-certificate", ingressURL))
 	assert.NoError(t, err)
-	assert.NotNil(t, string(stdout), "no curl output found")
+	assert.NotNil(t, string(stdout), "no wget output found")
 	assert.Contains(t, string(stdout), "bolt_routing")
 	assert.NotContains(t, string(stdout), "8443")
 
