@@ -8,7 +8,6 @@ import (
 	"crypto/elliptic"
 	"crypto/rand"
 	"crypto/rsa"
-	"crypto/tls"
 	"crypto/x509"
 	"crypto/x509/pkix"
 	"encoding/pem"
@@ -31,7 +30,6 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 	"log"
 	"math/big"
-	"net/http"
 	"os"
 	"os/exec"
 	"regexp"
@@ -1091,22 +1089,11 @@ func InstallReverseProxyHelmChart(t *testing.T, standaloneReleaseName model.Rele
 	assert.NotEmpty(t, ingressIP, "no ingress ip found")
 
 	ingressURL := fmt.Sprintf("https://%s:443", ingressIP)
-	client := &http.Client{
-		Transport: &http.Transport{
-			TLSClientConfig: &tls.Config{
-				InsecureSkipVerify: true,
-			},
-		},
-	}
-	resp, err := client.Get(ingressURL)
+	stdout, _, err := RunCommand(exec.Command("wget", "-qO-", "--no-check-certificate", ingressURL))
 	assert.NoError(t, err)
-	defer resp.Body.Close()
-
-	body, err := io.ReadAll(resp.Body)
-	assert.NoError(t, err)
-	bodyStr := string(body)
-	assert.Contains(t, bodyStr, "bolt_routing")
-	assert.NotContains(t, bodyStr, "8443")
+	assert.NotNil(t, string(stdout), "no wget output found")
+	assert.Contains(t, string(stdout), "bolt_routing")
+	assert.NotContains(t, string(stdout), "8443")
 
 	return nil
 }
