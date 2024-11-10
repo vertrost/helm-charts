@@ -11,6 +11,7 @@ RUN cd /bin && ln -s bash /bin/sh.bash && mv /bin/sh.bash /bin/sh
 RUN apt-get update && apt-get install -y \
   bash \
   curl \
+  wget  \
   ca-certificates \
   openssl \
   google-cloud-sdk-gke-gcloud-auth-plugin \
