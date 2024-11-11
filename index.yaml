@@ -2,6 +2,27 @@ apiVersion: v1
 entries:
   neo4j:
   - apiVersion: v1
+    appVersion: 5.25.1
+    created: "2024-11-11T09:25:55.427411477Z"
+    description: Neo4j is the world's leading graph database
+    digest: 6f28a3b0f3735bceac9ac769bc8aac3c8829a82423cfa103778c7a0d3f4345f9
+    home: https://www.neo4j.com
+    icon: http://info.neo4j.com/rs/773-GON-065/images/neo4j_logo.png
+    keywords:
+    - graph
+    - database
+    - cypher
+    maintainers:
+    - email: bledi.feshti@neotechnology.com
+      name: bfeshti
+    name: neo4j
+    sources:
+    - https://github.com/neo4j/neo4j
+    - https://github.com/neo4j/docker-neo4j
+    urls:
+    - https://github.com/neo4j/helm-charts/releases/download/5.25.1/neo4j-5.25.1.tgz
+    version: 5.25.1
+  - apiVersion: v1
     appVersion: 5.24.1
     created: "2024-10-07T07:20:53.755133076Z"
     description: Neo4j is the world's leading graph database
@@ -528,6 +549,27 @@ entries:
     - https://github.com/neo4j/helm-charts/releases/download/5.1.0/neo4j-5.1.0.tgz
     version: 5.1.0
   neo4j-admin:
+  - apiVersion: v1
+    appVersion: 5.25.1
+    created: "2024-11-11T09:25:55.42850354Z"
+    description: Neo4j is the world's leading graph database
+    digest: 810bd2086e7ed48be80bc0f4fbd3298e944311fcc4487483c05721e81c3bf0c3
+    home: https://www.neo4j.com
+    icon: http://info.neo4j.com/rs/773-GON-065/images/neo4j_logo.png
+    keywords:
+    - graph
+    - database
+    - cypher
+    maintainers:
+    - email: bledi.feshti@neotechnology.com
+      name: bfeshti
+    name: neo4j-admin
+    sources:
+    - https://github.com/neo4j/neo4j
+    - https://github.com/neo4j/docker-neo4j
+    urls:
+    - https://github.com/neo4j/helm-charts/releases/download/5.25.1/neo4j-admin-5.25.1.tgz
+    version: 5.25.1
   - apiVersion: v1
     appVersion: 5.24.1
     created: "2024-10-07T07:20:53.755962535Z"
@@ -3921,6 +3963,27 @@ entries:
   neo4j-headless-service:
   - apiVersion: v1
     appVersion: '-'
+    created: "2024-11-11T09:25:55.428889619Z"
+    description: Neo4j is the world's leading graph database
+    digest: 3451718ad7ef73de509462c01b12a6b7bd4b2dd1c402c293143ca5f8b6e8d92a
+    home: https://www.neo4j.com
+    icon: http://info.neo4j.com/rs/773-GON-065/images/neo4j_logo.png
+    keywords:
+    - graph
+    - database
+    - cypher
+    maintainers:
+    - email: bledi.feshti@neotechnology.com
+      name: bfeshti
+    name: neo4j-headless-service
+    sources:
+    - https://github.com/neo4j/neo4j
+    - https://github.com/neo4j/docker-neo4j
+    urls:
+    - https://github.com/neo4j/helm-charts/releases/download/5.25.1/neo4j-headless-service-5.25.1.tgz
+    version: 5.25.1
+  - apiVersion: v1
+    appVersion: '-'
     created: "2024-10-07T07:20:53.75629737Z"
     description: Neo4j is the world's leading graph database
     digest: d763eb9631fc3d404ae288cdc25b25848c820fa3fba54d3b8e47f78a87a3068f
@@ -4448,6 +4511,27 @@ entries:
   neo4j-loadbalancer:
   - apiVersion: v1
     appVersion: '-'
+    created: "2024-11-11T09:25:55.429297228Z"
+    description: Neo4j is the world's leading graph database
+    digest: fa6fe18dfc323aa76c7d70064a936c1422123c18df5606c7bd19606e6cff0349
+    home: https://www.neo4j.com
+    icon: http://info.neo4j.com/rs/773-GON-065/images/neo4j_logo.png
+    keywords:
+    - graph
+    - database
+    - cypher
+    maintainers:
+    - email: bledi.feshti@neotechnology.com
+      name: bfeshti
+    name: neo4j-loadbalancer
+    sources:
+    - https://github.com/neo4j/neo4j
+    - https://github.com/neo4j/docker-neo4j
+    urls:
+    - https://github.com/neo4j/helm-charts/releases/download/5.25.1/neo4j-loadbalancer-5.25.1.tgz
+    version: 5.25.1
+  - apiVersion: v1
+    appVersion: '-'
     created: "2024-10-07T07:20:53.756776905Z"
     description: Neo4j is the world's leading graph database
     digest: d33c3ac42d5cea1e8812e86be5758248a546eb4cf90ea665a4f16c568a6abc12
@@ -4720,6 +4804,27 @@ entries:
     - https://github.com/neo4j/helm-charts/releases/download/5.13.0/neo4j-loadbalancer-5.13.0.tgz
     version: 5.13.0
   neo4j-persistent-volume:
+  - apiVersion: v1
+    appVersion: '-'
+    created: "2024-11-11T09:25:55.429697133Z"
+    description: Sets up persistent disks suitable for a Neo4j Helm installation
+    digest: e9de3a7831c219c8d2255ba93bdda835a572e522ff402537452471bbb04c4d4a
+    home: https://www.neo4j.com
+    icon: http://info.neo4j.com/rs/773-GON-065/images/neo4j_logo.png
+    keywords:
+    - graph
+    - database
+    - cypher
+    maintainers:
+    - email: bledi.feshti@neotechnology.com
+      name: bfeshti
+    name: neo4j-persistent-volume
+    sources:
+    - https://github.com/neo4j/neo4j
+    - https://github.com/neo4j/docker-neo4j
+    urls:
+    - https://github.com/neo4j/helm-charts/releases/download/5.25.1/neo4j-persistent-volume-5.25.1.tgz
+    version: 5.25.1
   - apiVersion: v1
     appVersion: '-'
     created: "2024-10-07T07:20:53.757045296Z"
@@ -5247,6 +5352,27 @@ entries:
     - https://github.com/neo4j/helm-charts/releases/download/5.1.1/neo4j-persistent-volume-5.1.1.tgz
     version: 5.1.0
   neo4j-reverse-proxy:
+  - apiVersion: v1
+    appVersion: 5.25.1
+    created: "2024-11-11T09:25:55.430247357Z"
+    description: Sets up an http server and a reverse proxy for bolt and http requests
+    digest: 775396b30117d9460df06069d6da77adbee5c7a03f3fd0123929d3ee8c53f127
+    home: https://www.neo4j.com
+    icon: http://info.neo4j.com/rs/773-GON-065/images/neo4j_logo.png
+    keywords:
+    - graph
+    - database
+    - cypher
+    maintainers:
+    - email: bledi.feshti@neotechnology.com
+      name: bfeshti
+    name: neo4j-reverse-proxy
+    sources:
+    - https://github.com/neo4j/neo4j
+    - https://github.com/neo4j/docker-neo4j
+    urls:
+    - https://github.com/neo4j/helm-charts/releases/download/5.25.1/neo4j-reverse-proxy-5.25.1.tgz
+    version: 5.25.1
   - apiVersion: v1
     appVersion: 5.24.1
     created: "2024-10-07T07:20:53.757462284Z"
@@ -6497,4 +6623,4 @@ entries:
     urls:
     - https://github.com/neo4j/helm-charts/releases/download/4.3.2/neo4j-standalone-4.3.2.tgz
     version: 4.3.2
-generated: "2024-10-07T07:20:53.752662064Z"
+generated: "2024-11-11T09:25:55.424873291Z"
