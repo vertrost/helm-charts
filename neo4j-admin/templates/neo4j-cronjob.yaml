@@ -124,6 +124,7 @@ spec:
                 {{- end }}
                 - name: "backup"
                   mountPath: "/backups"
+              securityContext: {{ .Values.containerSecurityContext | toYaml | nindent 16 }}
           volumes:
             {{- if .Values.backup.secretName }}
             - name: credentials
