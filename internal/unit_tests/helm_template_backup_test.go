@@ -7,6 +7,7 @@ import (
 	"github.com/neo4j/helm-charts/internal/model"
 	"github.com/stretchr/testify/assert"
 	batchv1 "k8s.io/api/batch/v1"
+	corev1 "k8s.io/api/core/v1"
 )
 
 // TestBackupInstallationWithNoValues checks backup helm chart installation with no values
@@ -444,7 +445,7 @@ func TestNeo4jBackupContainerSecurityContext(t *testing.T) {
 	helmValues.Backup.BucketName = "demo2"
 	helmValues.Backup.Database = "neo4j1"
 
-	// Set custom container security context
+	// Set all fields requested by customer
 	helmValues.ContainerSecurityContext = model.ContainerSecurityContext{
 		RunAsNonRoot:             true,
 		RunAsUser:                7474,
@@ -467,10 +468,12 @@ func TestNeo4jBackupContainerSecurityContext(t *testing.T) {
 
 	secContext := container.SecurityContext
 	assert.NotNil(t, secContext, "container security context should not be nil")
-	assert.Equal(t, true, *secContext.RunAsNonRoot)
-	assert.Equal(t, int64(7474), *secContext.RunAsUser)
-	assert.Equal(t, int64(7474), *secContext.RunAsGroup)
-	assert.Equal(t, true, *secContext.ReadOnlyRootFilesystem)
-	assert.Equal(t, false, *secContext.AllowPrivilegeEscalation)
-	assert.Equal(t, []corev1.Capability{"ALL"}, secContext.Capabilities.Drop)
+
+	// Assert all fields requested by customer
+	assert.True(t, *secContext.RunAsNonRoot, "RunAsNonRoot should be true")
+	assert.Equal(t, int64(7474), *secContext.RunAsUser, "RunAsUser should be 7474")
+	assert.Equal(t, int64(7474), *secContext.RunAsGroup, "RunAsGroup should be 7474")
+	assert.True(t, *secContext.ReadOnlyRootFilesystem, "ReadOnlyRootFilesystem should be true")
+	assert.False(t, *secContext.AllowPrivilegeEscalation, "AllowPrivilegeEscalation should be false")
+	assert.Equal(t, []corev1.Capability{"ALL"}, secContext.Capabilities.Drop, "Capabilities.Drop should contain ALL")
 }
