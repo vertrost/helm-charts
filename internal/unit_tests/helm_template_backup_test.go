@@ -2,10 +2,11 @@ package unit_tests
 
 import (
 	"fmt"
+	"testing"
+
 	"github.com/neo4j/helm-charts/internal/model"
 	"github.com/stretchr/testify/assert"
 	batchv1 "k8s.io/api/batch/v1"
-	"testing"
 )
 
 // TestBackupInstallationWithNoValues checks backup helm chart installation with no values
@@ -429,4 +430,47 @@ func TestAggregateEnabledWithoutServiceAccount(t *testing.T) {
 	_, err := model.HelmTemplateFromStruct(t, model.BackupHelmChart, helmValues)
 	assert.NoError(t, err, "error seen while performing aggregate backup without using serviceaccount")
 
+}
+
+// TestNeo4jBackupContainerSecurityContext checks for container security context in the backup cronjob
+func TestNeo4jBackupContainerSecurityContext(t *testing.T) {
+	t.Parallel()
+
+	helmValues := model.DefaultNeo4jBackupValues
+	helmValues.DisableLookups = true
+	helmValues.Backup.DatabaseAdminServiceName = "standalone-admin"
+	helmValues.Backup.SecretName = "demo"
+	helmValues.Backup.CloudProvider = "aws"
+	helmValues.Backup.BucketName = "demo2"
+	helmValues.Backup.Database = "neo4j1"
+
+	// Set custom container security context
+	helmValues.ContainerSecurityContext = model.ContainerSecurityContext{
+		RunAsNonRoot:             true,
+		RunAsUser:                7474,
+		RunAsGroup:               7474,
+		ReadOnlyRootFilesystem:   true,
+		AllowPrivilegeEscalation: false,
+		Capabilities: model.Capabilities{
+			Drop: []string{"ALL"},
+		},
+	}
+
+	manifests, err := model.HelmTemplateFromStruct(t, model.BackupHelmChart, helmValues)
+	assert.NoError(t, err, "error seen while trying to install helm backup")
+
+	cronjobs := manifests.OfType(&batchv1.CronJob{})
+	assert.Len(t, cronjobs, 1, "there should be only one cronjob")
+
+	cronjob := cronjobs[0].(*batchv1.CronJob)
+	container := cronjob.Spec.JobTemplate.Spec.Template.Spec.Containers[0]
+
+	secContext := container.SecurityContext
+	assert.NotNil(t, secContext, "container security context should not be nil")
+	assert.Equal(t, true, *secContext.RunAsNonRoot)
+	assert.Equal(t, int64(7474), *secContext.RunAsUser)
+	assert.Equal(t, int64(7474), *secContext.RunAsGroup)
+	assert.Equal(t, true, *secContext.ReadOnlyRootFilesystem)
+	assert.Equal(t, false, *secContext.AllowPrivilegeEscalation)
+	assert.Equal(t, []corev1.Capability{"ALL"}, secContext.Capabilities.Drop)
 }
