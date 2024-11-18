@@ -1,19 +1,20 @@
 package model
 
 type Neo4jBackupValues struct {
-	NameOverride       string                 `yaml:"nameOverride,omitempty"`
-	FullnameOverride   string                 `yaml:"fullnameOverride,omitempty"`
-	DisableLookups     bool                   `yaml:"disableLookups" default:"false"`
-	Neo4J              Neo4jBackupNeo4j       `yaml:"neo4j"`
-	Backup             Backup                 `yaml:"backup"`
-	ConsistencyCheck   ConsistencyCheck       `yaml:"consistencyCheck"`
-	ServiceAccountName string                 `yaml:"serviceAccountName"`
-	TempVolume         map[string]interface{} `yaml:"tempVolume"`
-	SecurityContext    SecurityContext        `yaml:"securityContext"`
-	NodeSelector       map[string]string      `yaml:"nodeSelector,omitempty"`
-	Resources          Neo4jBackupResources   `yaml:"resources,omitempty"`
-	Tolerations        []Toleration           `yaml:"tolerations,omitempty"`
-	Affinity           Affinity               `yaml:"affinity,omitempty"`
+	NameOverride             string                 `yaml:"nameOverride,omitempty"`
+	FullnameOverride         string                 `yaml:"fullnameOverride,omitempty"`
+	DisableLookups           bool                   `yaml:"disableLookups" default:"false"`
+	Neo4J                    Neo4jBackupNeo4j       `yaml:"neo4j"`
+	Backup                   Backup                 `yaml:"backup"`
+	ConsistencyCheck         ConsistencyCheck       `yaml:"consistencyCheck"`
+	ServiceAccountName       string                 `yaml:"serviceAccountName"`
+	TempVolume               map[string]interface{} `yaml:"tempVolume"`
+	SecurityContext          SecurityContext        `yaml:"securityContext"`
+	ContainerSecurityContext SecurityContext        `yaml:"containerSecurityContext,omitempty"`
+	NodeSelector             map[string]string      `yaml:"nodeSelector,omitempty"`
+	Resources                Neo4jBackupResources   `yaml:"resources,omitempty"`
+	Tolerations              []Toleration           `yaml:"tolerations,omitempty"`
+	Affinity                 Affinity               `yaml:"affinity,omitempty"`
 }
 
 type Neo4jBackupResources struct {
