@@ -2519,6 +2519,7 @@ func TestCleanupJobAnnotations(t *testing.T) {
 		manifest, err := model.HelmTemplate(t, chart, []string{
 			"--set", "services.neo4j.enabled=true",
 			"--set", "services.neo4j.cleanup.enabled=true",
+			"--set", "neo4j.name=neo4j",
 		})
 		if !assert.NoError(t, err) {
 			return
@@ -2541,6 +2542,7 @@ func TestCleanupJobAnnotations(t *testing.T) {
 		manifest, err = model.HelmTemplate(t, chart, []string{
 			"--set", "services.neo4j.enabled=true",
 			"--set", "services.neo4j.cleanup.enabled=true",
+			"--set", "neo4j.name=neo4j",
 			"--set", "services.neo4j.cleanup.podAnnotations.sidecar\\.istio\\.io/inject=true",
 			"--set", "services.neo4j.cleanup.podAnnotations.custom\\.annotation/test=value",
 		})
