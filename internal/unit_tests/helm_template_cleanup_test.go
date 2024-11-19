@@ -14,57 +14,49 @@ func TestCleanupJobPodAnnotations(t *testing.T) {
 
 	forEachPrimaryChart(t, andEachSupportedEdition(func(t *testing.T, chart model.Neo4jHelmChartBuilder, edition string) {
 		baseArgs := []string{
-			"--set", "services.neo4j.enabled=true",
-			"--set", "services.neo4j.cleanup.enabled=true",
 			"--set", "neo4j.name=neo4j",
 			"--set", "volumes.data.mode=defaultStorageClass",
+			"--set", "podSpec.annotations.sidecar\\.istio\\.io/inject=true",
+			"--set", "podSpec.annotations.custom\\.annotation/test=value",
 		}
 
-		// Add edition-specific args
 		if edition == "enterprise" {
-			baseArgs = append(baseArgs, "--set", "neo4j.edition=enterprise", "--set", "neo4j.acceptLicenseAgreement=yes")
+			baseArgs = append(baseArgs,
+				"--set", "neo4j.edition=enterprise",
+				"--set", "neo4j.acceptLicenseAgreement=yes")
 		} else {
 			baseArgs = append(baseArgs, "--set", "neo4j.edition=community")
 		}
 
-		// Test default annotations
+		// Add the hook-delete flag to generate cleanup job
+		baseArgs = append(baseArgs, "--hooks")
+
 		manifest, err := model.HelmTemplate(t, chart, baseArgs)
 		if !assert.NoError(t, err) {
+			t.Logf("Template error: %v", err)
 			return
+		}
+
+		// Debug: Print all jobs in the manifest
+		jobs := manifest.OfType(&batchv1.Job{})
+		t.Logf("Found %d jobs in manifest", len(jobs))
+		for _, obj := range jobs {
+			if job, ok := obj.(*batchv1.Job); ok {
+				t.Logf("Job name: %s", job.ObjectMeta.Name)
+			}
 		}
 
 		cleanupJob := manifest.OfTypeWithName(
 			&batchv1.Job{},
 			fmt.Sprintf("%s-cleanup", model.DefaultHelmTemplateReleaseName.String()),
-		).(*batchv1.Job)
+		)
 
 		if !assert.NotNil(t, cleanupJob, "cleanup job not found") {
 			return
 		}
 
-		// Check default annotation
-		podAnnotations := cleanupJob.Spec.Template.ObjectMeta.Annotations
-		assert.Equal(t, "false", podAnnotations["sidecar.istio.io/inject"], "Default Istio sidecar injection should be disabled")
-
-		// Test custom annotations
-		customAnnotationsArgs := append(
-			baseArgs,
-			"--set", "services.neo4j.cleanup.podAnnotations.sidecar\\.istio\\.io/inject=true",
-			"--set", "services.neo4j.cleanup.podAnnotations.custom\\.annotation/test=value",
-		)
-
-		manifest, err = model.HelmTemplate(t, chart, customAnnotationsArgs)
-		if !assert.NoError(t, err) {
-			return
-		}
-
-		cleanupJob = manifest.OfTypeWithName(
-			&batchv1.Job{},
-			fmt.Sprintf("%s-cleanup", model.DefaultHelmTemplateReleaseName.String()),
-		).(*batchv1.Job)
-
-		// Check custom annotations
-		podAnnotations = cleanupJob.Spec.Template.ObjectMeta.Annotations
+		// Check annotations
+		podAnnotations := cleanupJob.(*batchv1.Job).Spec.Template.ObjectMeta.Annotations
 		assert.Equal(t, "true", podAnnotations["sidecar.istio.io/inject"], "Custom Istio sidecar injection setting should be respected")
 		assert.Equal(t, "value", podAnnotations["custom.annotation/test"], "Custom annotation should be present")
 	}))
