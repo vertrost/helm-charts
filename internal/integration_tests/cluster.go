@@ -4,6 +4,14 @@ import (
 	"context"
 	"encoding/base64"
 	"fmt"
+	"log"
+	"os"
+	"os/exec"
+	"regexp"
+	"strings"
+	"testing"
+	"time"
+
 	"github.com/hashicorp/go-multierror"
 	. "github.com/neo4j/helm-charts/internal/helpers"
 	"github.com/neo4j/helm-charts/internal/integration_tests/gcloud"
@@ -12,13 +20,6 @@ import (
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
-	"log"
-	"os"
-	"os/exec"
-	"regexp"
-	"strings"
-	"testing"
-	"time"
 )
 
 // labelNodes labels all the node with testLabel=namespace-<number>
@@ -107,6 +108,10 @@ func clusterTests(clusterRelease model.ReleaseName) ([]SubTest, error) {
 		}},
 		{name: "Install Backup Helm Chart For GCP With Workload Identity For Cluster", test: func(t *testing.T) {
 			assert.NoError(t, InstallNeo4jBackupGCPHelmChartWithWorkloadIdentityForCluster(t, clusterRelease), "Backup to GCP with workload identity should succeed")
+		}},
+		{name: "TestBackupWithMultipleEndpoints", test: func(t *testing.T) {
+			t.Parallel()
+			TestBackupWithMultipleEndpoints(t)
 		}},
 	}
 	return subTests, nil
@@ -853,4 +858,49 @@ func printStdOutStdErr(stdOut []byte, stderr []byte, command []string) {
 	log.Println("Command = ", command)
 	log.Println("stdout = ", string(stdOut))
 	log.Println("stderr = ", string(stderr))
+}
+
+// TestBackupWithMultipleEndpoints checks backup with multiple endpoints in a cluster setup
+func TestBackupWithMultipleEndpoints(t *testing.T) {
+	t.Parallel()
+
+	backupReleaseName := model.NewReleaseName("backup-multi-endpoints-" + TestRunIdentifier)
+	namespace := string(backupReleaseName.Namespace())
+	_, err := createNamespace(t, backupReleaseName)
+	if err != nil {
+		return
+	}
+
+	bucketName := model.BucketName
+	helmClient := model.NewHelmClient(model.DefaultNeo4jBackupChartName)
+	helmValues := model.DefaultNeo4jBackupValues
+	helmValues.Backup = model.Backup{
+		BucketName:              bucketName,
+		DatabaseBackupEndpoints: "10.30.1.101:6362,10.30.2.101:6362,10.30.3.101:6362",
+		DatabaseNamespace:       namespace,
+		Database:                "neo4j,system",
+		CloudProvider:           "gcp",
+		Verbose:                 true,
+		Type:                    "FULL",
+		KeepBackupFiles:         true,
+	}
+
+	_, err = helmClient.Install(t, backupReleaseName.String(), namespace, helmValues)
+	assert.NoError(t, err)
+
+	time.Sleep(2 * time.Minute)
+	cronjob, err := Clientset.BatchV1().CronJobs(namespace).Get(context.Background(), backupReleaseName.String(), metav1.GetOptions{})
+	assert.NoError(t, err, "cannot retrieve backup cronjob")
+	assert.Equal(t, cronjob.Spec.Schedule, helmValues.Neo4J.JobSchedule, fmt.Sprintf("cronjob schedule %s not matching with the schedule defined in values.yaml %s", cronjob.Spec.Schedule, helmValues.Neo4J.JobSchedule))
+
+	container := cronjob.Spec.JobTemplate.Spec.Template.Spec.Containers[0]
+	var found bool
+	for _, env := range container.Env {
+		if env.Name == "DATABASE_BACKUP_ENDPOINTS" {
+			found = true
+			assert.Equal(t, helmValues.Backup.DatabaseBackupEndpoints, env.Value)
+			break
+		}
+	}
+	assert.True(t, found, "DATABASE_BACKUP_ENDPOINTS environment variable not found")
 }
