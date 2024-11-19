@@ -163,7 +163,7 @@ containerSecurityContext:
   runAsNonRoot: true
   runAsUser: 7474
   runAsGroup: 7474
-  readOnlyRootFilesystem: true
+  readOnlyRootFilesystem: false
   allowPrivilegeEscalation: false
   capabilities:
     drop: ["ALL"]

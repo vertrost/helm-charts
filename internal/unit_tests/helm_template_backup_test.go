@@ -445,12 +445,11 @@ func TestNeo4jBackupContainerSecurityContext(t *testing.T) {
 	helmValues.Backup.BucketName = "demo2"
 	helmValues.Backup.Database = "neo4j1"
 
-	// Set all fields requested by customer
 	helmValues.ContainerSecurityContext = model.ContainerSecurityContext{
 		RunAsNonRoot:             true,
 		RunAsUser:                7474,
 		RunAsGroup:               7474,
-		ReadOnlyRootFilesystem:   true,
+		ReadOnlyRootFilesystem:   false,
 		AllowPrivilegeEscalation: false,
 		Capabilities: model.Capabilities{
 			Drop: []string{"ALL"},
@@ -473,7 +472,7 @@ func TestNeo4jBackupContainerSecurityContext(t *testing.T) {
 	assert.True(t, *secContext.RunAsNonRoot, "RunAsNonRoot should be true")
 	assert.Equal(t, int64(7474), *secContext.RunAsUser, "RunAsUser should be 7474")
 	assert.Equal(t, int64(7474), *secContext.RunAsGroup, "RunAsGroup should be 7474")
-	assert.True(t, *secContext.ReadOnlyRootFilesystem, "ReadOnlyRootFilesystem should be true")
+	assert.False(t, *secContext.ReadOnlyRootFilesystem, "ReadOnlyRootFilesystem should be false")
 	assert.False(t, *secContext.AllowPrivilegeEscalation, "AllowPrivilegeEscalation should be false")
 	assert.Equal(t, []corev1.Capability{"ALL"}, secContext.Capabilities.Drop, "Capabilities.Drop should contain ALL")
 }
