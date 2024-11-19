@@ -58,20 +58,19 @@
 {{- end -}}
 
 {{- define "neo4j.backup.checkDatabaseIPAndServiceName" -}}
-    {{/* Original validation for when disableLookups is true */}}
-    {{- if .Values.disableLookups -}}
+    {{/* Skip validation for aggregate backup */}}
+    {{- if and .Values.backup.aggregateBackup .Values.backup.aggregateBackup.enabled -}}
+        {{/* Skip all validation for aggregate backup */}}
+    {{- else if .Values.disableLookups -}}
         {{- if and (empty (.Values.backup.databaseAdminServiceName | trim)) (empty (.Values.backup.databaseAdminServiceIP | trim)) -}}
             {{- fail (printf "Empty fields. Please set databaseAdminServiceName") -}}
         {{- end -}}
-    {{/* New validation for when disableLookups is false */}}
     {{- else -}}
         {{- if and (empty (.Values.backup.databaseBackupEndpoints | trim)) (empty (.Values.backup.databaseAdminServiceName | trim)) (empty (.Values.backup.databaseAdminServiceIP | trim)) -}}
             {{- fail (printf "Empty fields. Please set either databaseBackupEndpoints or databaseAdminServiceName/databaseAdminServiceIP") -}}
         {{- end -}}
-    {{- end -}}
-
-    {{/* Validation for conflicting configurations */}}
-    {{- if and (.Values.backup.databaseBackupEndpoints) (or .Values.backup.databaseAdminServiceName .Values.backup.databaseAdminServiceIP) -}}
-        {{- fail (printf "Cannot specify both databaseBackupEndpoints and databaseAdminServiceName/databaseAdminServiceIP") -}}
+        {{- if and (.Values.backup.databaseBackupEndpoints) (or .Values.backup.databaseAdminServiceName .Values.backup.databaseAdminServiceIP) -}}
+            {{- fail (printf "Cannot specify both databaseBackupEndpoints and databaseAdminServiceName/databaseAdminServiceIP") -}}
+        {{- end -}}
     {{- end -}}
 {{- end -}}
