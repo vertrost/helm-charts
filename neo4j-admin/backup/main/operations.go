@@ -2,14 +2,15 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
+	"strings"
+
 	"github.com/neo4j/helm-charts/neo4j-admin/backup/aws"
 	"github.com/neo4j/helm-charts/neo4j-admin/backup/azure"
 	gcp "github.com/neo4j/helm-charts/neo4j-admin/backup/gcp"
 	neo4jAdmin "github.com/neo4j/helm-charts/neo4j-admin/backup/neo4j-admin"
 	"k8s.io/utils/strings/slices"
-	"log"
-	"os"
-	"strings"
 )
 
 func awsOperations() {
@@ -174,17 +175,24 @@ func handleError(err error) {
 
 // generateAddress returns the backup address in the format <hostip:port> or <standalone-admin.default.svc.cluster.local:port>
 func generateAddress() (string, error) {
+	if endpoints := os.Getenv("DATABASE_BACKUP_ENDPOINTS"); len(endpoints) > 0 {
+		return endpoints, nil
+	}
+
+	// Legacy support for single endpoint
 	if ip := os.Getenv("DATABASE_SERVICE_IP"); len(ip) > 0 {
-		address := fmt.Sprintf("%s:%s", ip, os.Getenv("DATABASE_BACKUP_PORT"))
-		log.Printf("Address := %s", address)
-		return address, nil
+		return fmt.Sprintf("%s:%s", ip, os.Getenv("DATABASE_BACKUP_PORT")), nil
 	}
+
 	if serviceName := os.Getenv("DATABASE_SERVICE_NAME"); len(serviceName) > 0 {
-		address := fmt.Sprintf("%s.%s.svc.%s:%s", serviceName, os.Getenv("DATABASE_NAMESPACE"), os.Getenv("DATABASE_CLUSTER_DOMAIN"), os.Getenv("DATABASE_BACKUP_PORT"))
-		log.Printf("Address := %s", address)
-		return address, nil
+		return fmt.Sprintf("%s.%s.svc.%s:%s",
+			serviceName,
+			os.Getenv("DATABASE_NAMESPACE"),
+			os.Getenv("DATABASE_CLUSTER_DOMAIN"),
+			os.Getenv("DATABASE_BACKUP_PORT")), nil
 	}
-	return "", fmt.Errorf("cannot generate address. Invalid DATABASE_SERVICE_IP = %s or DATABASE_SERVICE_NAME = %s", os.Getenv("DATABASE_SERVICE_IP"), os.Getenv("DATABASE_SERVICE_NAME"))
+
+	return "", fmt.Errorf("no valid backup endpoints specified")
 }
 
 func deleteBackupFiles(backupFileNames, consistencyCheckReports []string) error {

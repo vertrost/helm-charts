@@ -9,24 +9,32 @@ import (
 
 // getBackupCommandFlags returns a slice of string containing all the flags to be passed with the neo4j-admin backup command
 func getBackupCommandFlags(address string) []string {
-	database := os.Getenv("DATABASE")
 	flags := []string{"database", "backup"}
-	flags = append(flags, fmt.Sprintf("--from=%s", address))
+
+	// Split address into multiple endpoints if comma-separated
+	endpoints := strings.Split(address, ",")
+	for _, endpoint := range endpoints {
+		flags = append(flags, fmt.Sprintf("--from=%s", strings.TrimSpace(endpoint)))
+	}
+
 	flags = append(flags, fmt.Sprintf("--include-metadata=%s", os.Getenv("INCLUDE_METADATA")))
 	flags = append(flags, fmt.Sprintf("--keep-failed=%s", os.Getenv("KEEP_FAILED")))
 	flags = append(flags, fmt.Sprintf("--parallel-recovery=%s", os.Getenv("PARALLEL_RECOVERY")))
 	flags = append(flags, fmt.Sprintf("--type=%s", os.Getenv("TYPE")))
 	flags = append(flags, fmt.Sprintf("--to-path=%s", "/backups"))
+
 	if len(strings.TrimSpace(os.Getenv("PAGE_CACHE"))) > 0 {
 		flags = append(flags, fmt.Sprintf("--pagecache=%s", os.Getenv("PAGE_CACHE")))
 	}
-	//flags = append(flags, "--expand-commands")
+
 	if os.Getenv("VERBOSE") == "true" {
 		flags = append(flags, "--verbose")
 	}
-	for _, db := range strings.Split(database, ",") {
-		flags = append(flags, fmt.Sprintf("%s", db))
+
+	for _, db := range strings.Split(os.Getenv("DATABASE"), ",") {
+		flags = append(flags, strings.TrimSpace(db))
 	}
+
 	return flags
 }
 
