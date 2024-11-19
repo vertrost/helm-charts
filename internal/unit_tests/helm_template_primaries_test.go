@@ -2516,11 +2516,13 @@ func TestCleanupJobAnnotations(t *testing.T) {
 		}
 
 		// Test default annotations
-		manifest, err := model.HelmTemplate(t, chart, []string{
+		manifest, err := model.HelmTemplate(t, chart, append([]string{
 			"--set", "services.neo4j.enabled=true",
 			"--set", "services.neo4j.cleanup.enabled=true",
 			"--set", "neo4j.name=neo4j",
-		})
+			"--set", "neo4j.edition=enterprise",
+			"--set", "volumes.data.mode=defaultStorageClass", // Using defaultStorageClass as suggested in error
+		}, requiredDataMode...))
 		if !assert.NoError(t, err) {
 			return
 		}
@@ -2539,13 +2541,15 @@ func TestCleanupJobAnnotations(t *testing.T) {
 		assert.Equal(t, "false", podAnnotations["sidecar.istio.io/inject"], "Default Istio sidecar injection should be disabled")
 
 		// Test custom annotations
-		manifest, err = model.HelmTemplate(t, chart, []string{
+		manifest, err = model.HelmTemplate(t, chart, append([]string{
 			"--set", "services.neo4j.enabled=true",
 			"--set", "services.neo4j.cleanup.enabled=true",
 			"--set", "neo4j.name=neo4j",
+			"--set", "neo4j.edition=enterprise",
+			"--set", "volumes.data.mode=defaultStorageClass",
 			"--set", "services.neo4j.cleanup.podAnnotations.sidecar\\.istio\\.io/inject=true",
 			"--set", "services.neo4j.cleanup.podAnnotations.custom\\.annotation/test=value",
-		})
+		}, requiredDataMode...))
 		if !assert.NoError(t, err) {
 			return
 		}
