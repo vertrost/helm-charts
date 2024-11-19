@@ -18,6 +18,7 @@ import (
 	pv1 "github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1"
 	"github.com/stretchr/testify/assert"
 	appsv1 "k8s.io/api/apps/v1"
+	batchv1 "k8s.io/api/batch/v1"
 	v1 "k8s.io/api/core/v1"
 )
 
@@ -2504,4 +2505,60 @@ func assertOnlyNeo4jImagesUsedInStatefulSet(t *testing.T, neo4jStatefulSet *apps
 	for _, container := range neo4jStatefulSet.Spec.Template.Spec.InitContainers {
 		assert.Contains(t, container.Image, "neo4j:")
 	}
+}
+
+// TestCleanupJobPodAnnotations checks if cleanup job Pod has the default and custom annotations
+func TestCleanupJobPodAnnotations(t *testing.T) {
+	t.Parallel()
+
+	forEachPrimaryChart(t, andEachSupportedEdition(func(t *testing.T, chart model.Neo4jHelmChartBuilder, edition string) {
+		if edition != "enterprise" {
+			return // Skip test for non-enterprise edition since cleanup job is enterprise-only
+		}
+
+		// Test default annotation
+		manifest, err := model.HelmTemplate(t, chart, []string{
+			"--set", "neo4j.name=" + model.DefaultNeo4jName,
+			"--set", "neo4j.minimumClusterSize=3",
+			"--set", "neo4j.edition=enterprise",
+			"--set", "neo4j.acceptLicenseAgreement=yes",
+			"--set", "services.neo4j.cleanup.enabled=true",
+			"--set", "volumes.data.mode=selector",
+		})
+		if !assert.NoError(t, err) {
+			return
+		}
+
+		cleanupJob := manifest.OfTypeWithName(&batchv1.Job{}, fmt.Sprintf("%s-cleanup", model.DefaultHelmTemplateReleaseName))
+		if !assert.NotNil(t, cleanupJob, "cleanup job not found") {
+			return
+		}
+
+		podAnnotations := cleanupJob.(*batchv1.Job).Spec.Template.ObjectMeta.Annotations
+		assert.Equal(t, "false", podAnnotations["sidecar.istio.io/inject"], "default sidecar.istio.io/inject annotation value should be false")
+
+		// Test custom annotations
+		manifest, err = model.HelmTemplate(t, chart, []string{
+			"--set", "neo4j.name=" + model.DefaultNeo4jName,
+			"--set", "neo4j.minimumClusterSize=3",
+			"--set", "neo4j.edition=enterprise",
+			"--set", "neo4j.acceptLicenseAgreement=yes",
+			"--set", "services.neo4j.cleanup.enabled=true",
+			"--set-string", "services.neo4j.cleanup.podAnnotations.sidecar\\.istio\\.io/inject=true",
+			"--set", "services.neo4j.cleanup.podAnnotations.custom\\.annotation/test=value",
+			"--set", "volumes.data.mode=selector",
+		})
+		if !assert.NoError(t, err) {
+			return
+		}
+
+		cleanupJob = manifest.OfTypeWithName(&batchv1.Job{}, fmt.Sprintf("%s-cleanup", model.DefaultHelmTemplateReleaseName))
+		if !assert.NotNil(t, cleanupJob, "cleanup job not found") {
+			return
+		}
+
+		podAnnotations = cleanupJob.(*batchv1.Job).Spec.Template.ObjectMeta.Annotations
+		assert.Equal(t, "true", podAnnotations["sidecar.istio.io/inject"], "custom sidecar.istio.io/inject annotation value should be true")
+		assert.Equal(t, "value", podAnnotations["custom.annotation/test"], "custom annotation should be present")
+	}))
 }
