@@ -58,19 +58,20 @@
 {{- end -}}
 
 {{- define "neo4j.backup.checkDatabaseIPAndServiceName" -}}
-
-    {{- if or (kindIs "invalid" .Values.backup.aggregate) (not .Values.backup.aggregate.enabled) -}}
-        {{- if and (kindIs "invalid" .Values.backup.databaseAdminServiceName) (kindIs "invalid" .Values.backup.databaseAdminServiceIP) -}}
-            {{- fail (printf "Missing fields. Please set databaseAdminServiceName via --set backup.databaseAdminServiceName or databaseAdminServiceIP via --set backup.databaseAdminServiceIP")}}
-        {{- end -}}
-
+    {{/* Original validation for when disableLookups is true */}}
+    {{- if .Values.disableLookups -}}
         {{- if and (empty (.Values.backup.databaseAdminServiceName | trim)) (empty (.Values.backup.databaseAdminServiceIP | trim)) -}}
-            {{- fail (printf "Empty fields. Please set databaseAdminServiceName via --set backup.databaseAdminServiceName or databaseAdminServiceIP via --set backup.databaseAdminServiceIP")}}
+            {{- fail (printf "Empty fields. Please set databaseAdminServiceName") -}}
         {{- end -}}
-
-            {{- if and (.Values.backup.databaseAdminServiceName | trim) (.Values.backup.databaseAdminServiceIP | trim) -}}
-            {{- fail (printf "Please set databaseAdminServiceName via --set backup.databaseAdminServiceName or databaseAdminServiceIP via --set backup.databaseAdminServiceIP. Cannot use both")}}
+    {{/* New validation for when disableLookups is false */}}
+    {{- else -}}
+        {{- if and (empty (.Values.backup.databaseBackupEndpoints | trim)) (empty (.Values.backup.databaseAdminServiceName | trim)) (empty (.Values.backup.databaseAdminServiceIP | trim)) -}}
+            {{- fail (printf "Empty fields. Please set either databaseBackupEndpoints or databaseAdminServiceName/databaseAdminServiceIP") -}}
         {{- end -}}
     {{- end -}}
 
+    {{/* Validation for conflicting configurations */}}
+    {{- if and (.Values.backup.databaseBackupEndpoints) (or .Values.backup.databaseAdminServiceName .Values.backup.databaseAdminServiceIP) -}}
+        {{- fail (printf "Cannot specify both databaseBackupEndpoints and databaseAdminServiceName/databaseAdminServiceIP") -}}
+    {{- end -}}
 {{- end -}}
