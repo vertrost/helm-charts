@@ -276,6 +276,9 @@ services:
     # If enabled: is set to false, the LoadBalancer will be orphaned and will have to manually deleted post uninstall and the hook job will not be created
     cleanup:
       enabled: true
+      # Pod annotations for the cleanup job
+      podAnnotations:
+        sidecar.istio.io/inject: "false" 
       image:
         registry: docker.io
         repository: bitnami/kubectl
