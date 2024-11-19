@@ -250,12 +250,14 @@ type Services struct {
 }
 
 type SecurityContext struct {
-	RunAsNonRoot        bool         `yaml:"runAsNonRoot,omitempty"`
-	RunAsUser           int          `yaml:"runAsUser,omitempty"`
-	RunAsGroup          int          `yaml:"runAsGroup,omitempty"`
-	FsGroup             int          `yaml:"fsGroup,omitempty"`
-	FsGroupChangePolicy string       `yaml:"fsGroupChangePolicy,omitempty"`
-	Capabilities        Capabilities `yaml:"capabilities,omitempty"`
+	RunAsNonRoot             bool         `yaml:"runAsNonRoot,omitempty"`
+	RunAsUser                int          `yaml:"runAsUser,omitempty"`
+	RunAsGroup               int          `yaml:"runAsGroup,omitempty"`
+	FsGroup                  int          `yaml:"fsGroup,omitempty"`
+	FsGroupChangePolicy      string       `yaml:"fsGroupChangePolicy,omitempty"`
+	ReadOnlyRootFilesystem   bool         `yaml:"readOnlyRootFilesystem,omitempty"`
+	AllowPrivilegeEscalation bool         `yaml:"allowPrivilegeEscalation,omitempty"`
+	Capabilities             Capabilities `yaml:"capabilities,omitempty"`
 }
 
 type Capabilities struct {

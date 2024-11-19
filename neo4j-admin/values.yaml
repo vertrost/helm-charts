@@ -159,6 +159,15 @@ securityContext:
   fsGroup: 7474
   fsGroupChangePolicy: "Always"
 
+containerSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 7474
+  runAsGroup: 7474
+  readOnlyRootFilesystem: false
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop: ["ALL"]
+
 # default ephemeral storage of backup container
 resources:
   requests:
@@ -209,3 +218,4 @@ tolerations: []
 #    operator: "Equal"
 #    value: "value2"
 #    effect: "NoSchedule"
+

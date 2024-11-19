@@ -186,6 +186,16 @@ var DefaultNeo4jBackupValues = Neo4jBackupValues{
 		FsGroup:             7474,
 		FsGroupChangePolicy: "Always",
 	},
+	ContainerSecurityContext: ContainerSecurityContext{
+		RunAsNonRoot:             true,
+		RunAsUser:                7474,
+		RunAsGroup:               7474,
+		ReadOnlyRootFilesystem:   false,
+		AllowPrivilegeEscalation: false,
+		Capabilities: Capabilities{
+			Drop: []string{"ALL"},
+		},
+	},
 }
 
 var DefaultNeo4jReverseProxyValues = Neo4jReverseProxyValues{
