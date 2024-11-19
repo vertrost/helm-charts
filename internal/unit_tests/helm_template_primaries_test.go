@@ -2511,18 +2511,23 @@ func TestCleanupJobAnnotations(t *testing.T) {
 	t.Parallel()
 
 	forEachPrimaryChart(t, andEachSupportedEdition(func(t *testing.T, chart model.Neo4jHelmChartBuilder, edition string) {
-		if edition != "enterprise" {
-			return
-		}
-
-		// Test default annotations
-		manifest, err := model.HelmTemplate(t, chart, append([]string{
+		var helmTemplateArgs []string
+		baseArgs := []string{
 			"--set", "services.neo4j.enabled=true",
 			"--set", "services.neo4j.cleanup.enabled=true",
 			"--set", "neo4j.name=neo4j",
-			"--set", "neo4j.edition=enterprise",
-			"--set", "volumes.data.mode=defaultStorageClass", // Using defaultStorageClass as suggested in error
-		}, requiredDataMode...))
+			"--set", "volumes.data.mode=defaultStorageClass",
+		}
+
+		// Add edition-specific args
+		if edition == "enterprise" {
+			helmTemplateArgs = append(baseArgs, useEnterpriseAndAcceptLicense...)
+		} else {
+			helmTemplateArgs = append(baseArgs, useCommunity...)
+		}
+
+		// Test default annotations
+		manifest, err := model.HelmTemplate(t, chart, helmTemplateArgs)
 		if !assert.NoError(t, err) {
 			return
 		}
@@ -2541,15 +2546,18 @@ func TestCleanupJobAnnotations(t *testing.T) {
 		assert.Equal(t, "false", podAnnotations["sidecar.istio.io/inject"], "Default Istio sidecar injection should be disabled")
 
 		// Test custom annotations
-		manifest, err = model.HelmTemplate(t, chart, append([]string{
-			"--set", "services.neo4j.enabled=true",
-			"--set", "services.neo4j.cleanup.enabled=true",
-			"--set", "neo4j.name=neo4j",
-			"--set", "neo4j.edition=enterprise",
-			"--set", "volumes.data.mode=defaultStorageClass",
+		customAnnotationsArgs := append(
+			baseArgs,
 			"--set", "services.neo4j.cleanup.podAnnotations.sidecar\\.istio\\.io/inject=true",
 			"--set", "services.neo4j.cleanup.podAnnotations.custom\\.annotation/test=value",
-		}, requiredDataMode...))
+		)
+		if edition == "enterprise" {
+			customAnnotationsArgs = append(customAnnotationsArgs, useEnterpriseAndAcceptLicense...)
+		} else {
+			customAnnotationsArgs = append(customAnnotationsArgs, useCommunity...)
+		}
+
+		manifest, err = model.HelmTemplate(t, chart, customAnnotationsArgs)
 		if !assert.NoError(t, err) {
 			return
 		}
