@@ -861,14 +861,12 @@ func printStdOutStdErr(stdOut []byte, stderr []byte, command []string) {
 }
 
 // TestBackupWithMultipleEndpoints checks backup with multiple endpoints in a cluster setup
-func TestBackupWithMultipleEndpoints(t *testing.T) {
-	t.Parallel()
-
+func TestBackupWithMultipleEndpoints(t *testing.T) error {
 	backupReleaseName := model.NewReleaseName("backup-multi-endpoints-" + TestRunIdentifier)
 	namespace := string(backupReleaseName.Namespace())
 	_, err := createNamespace(t, backupReleaseName)
 	if err != nil {
-		return
+		return err
 	}
 
 	bucketName := model.BucketName
@@ -886,21 +884,36 @@ func TestBackupWithMultipleEndpoints(t *testing.T) {
 	}
 
 	_, err = helmClient.Install(t, backupReleaseName.String(), namespace, helmValues)
-	assert.NoError(t, err)
+	if err != nil {
+		return err
+	}
 
 	time.Sleep(2 * time.Minute)
 	cronjob, err := Clientset.BatchV1().CronJobs(namespace).Get(context.Background(), backupReleaseName.String(), metav1.GetOptions{})
-	assert.NoError(t, err, "cannot retrieve backup cronjob")
-	assert.Equal(t, cronjob.Spec.Schedule, helmValues.Neo4J.JobSchedule, fmt.Sprintf("cronjob schedule %s not matching with the schedule defined in values.yaml %s", cronjob.Spec.Schedule, helmValues.Neo4J.JobSchedule))
+	if err != nil {
+		return fmt.Errorf("cannot retrieve backup cronjob: %v", err)
+	}
+
+	if !assert.Equal(t, cronjob.Spec.Schedule, helmValues.Neo4J.JobSchedule,
+		fmt.Sprintf("cronjob schedule %s not matching with the schedule defined in values.yaml %s",
+			cronjob.Spec.Schedule, helmValues.Neo4J.JobSchedule)) {
+		return fmt.Errorf("cronjob schedule mismatch")
+	}
 
 	container := cronjob.Spec.JobTemplate.Spec.Template.Spec.Containers[0]
 	var found bool
 	for _, env := range container.Env {
 		if env.Name == "DATABASE_BACKUP_ENDPOINTS" {
 			found = true
-			assert.Equal(t, helmValues.Backup.DatabaseBackupEndpoints, env.Value)
+			if !assert.Equal(t, helmValues.Backup.DatabaseBackupEndpoints, env.Value) {
+				return fmt.Errorf("DATABASE_BACKUP_ENDPOINTS value mismatch")
+			}
 			break
 		}
 	}
-	assert.True(t, found, "DATABASE_BACKUP_ENDPOINTS environment variable not found")
+	if !assert.True(t, found, "DATABASE_BACKUP_ENDPOINTS environment variable not found") {
+		return fmt.Errorf("DATABASE_BACKUP_ENDPOINTS environment variable not found")
+	}
+
+	return nil
 }
