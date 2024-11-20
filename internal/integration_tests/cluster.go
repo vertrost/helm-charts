@@ -17,6 +17,7 @@ import (
 	"github.com/neo4j/helm-charts/internal/integration_tests/gcloud"
 	"github.com/neo4j/helm-charts/internal/model"
 	"github.com/stretchr/testify/assert"
+	corev1 "k8s.io/api/core/v1"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
@@ -108,10 +109,6 @@ func clusterTests(clusterRelease model.ReleaseName) ([]SubTest, error) {
 		}},
 		{name: "Install Backup Helm Chart For GCP With Workload Identity For Cluster", test: func(t *testing.T) {
 			assert.NoError(t, InstallNeo4jBackupGCPHelmChartWithWorkloadIdentityForCluster(t, clusterRelease), "Backup to GCP with workload identity should succeed")
-		}},
-		{name: "TestBackupWithMultipleEndpoints", test: func(t *testing.T) {
-			t.Parallel()
-			TestBackupWithMultipleEndpoints(t)
 		}},
 	}
 	return subTests, nil
@@ -860,60 +857,62 @@ func printStdOutStdErr(stdOut []byte, stderr []byte, command []string) {
 	log.Println("stderr = ", string(stderr))
 }
 
-// TestBackupWithMultipleEndpoints checks backup with multiple endpoints in a cluster setup
-func TestBackupWithMultipleEndpoints(t *testing.T) error {
-	backupReleaseName := model.NewReleaseName("backup-multi-endpoints-" + TestRunIdentifier)
-	namespace := string(backupReleaseName.Namespace())
-	_, err := createNamespace(t, backupReleaseName)
-	if err != nil {
-		return err
-	}
+func TestBackupMultipleEndpointsE2E(t *testing.T) {
+	t.Parallel()
 
-	bucketName := model.BucketName
-	helmClient := model.NewHelmClient(model.DefaultNeo4jBackupChartName)
+	releaseName := model.NewReleaseName("multiple-backup-endpoints-" + TestRunIdentifier)
+	_, err := createNamespace(t, releaseName)
+	if err != nil {
+		return
+	}
+	namespace := string(releaseName.Namespace())
+
+	// Add cleanup
+	t.Cleanup(func() {
+		_ = runAll(t, "helm", [][]string{
+			{"uninstall", releaseName.String(), "--wait", "--timeout", "3m", "--namespace", namespace},
+			{"delete", "namespace", namespace},
+		}, false)
+	})
+
+	backupEndpoints := "10.3.3.2:6362,10.3.3.3:6362,10.3.3.4:6362"
+
 	helmValues := model.DefaultNeo4jBackupValues
-	helmValues.Backup = model.Backup{
-		BucketName:              bucketName,
-		DatabaseBackupEndpoints: "10.30.1.101:6362,10.30.2.101:6362,10.30.3.101:6362",
-		DatabaseNamespace:       namespace,
-		Database:                "neo4j,system",
-		CloudProvider:           "gcp",
-		Verbose:                 true,
-		Type:                    "FULL",
-		KeepBackupFiles:         true,
-	}
+	helmValues.Backup.DatabaseBackupEndpoints = backupEndpoints
+	helmValues.Backup.DatabaseAdminServiceName = "standalone-admin"
+	helmValues.Backup.SecretName = "demo"
+	helmValues.Backup.CloudProvider = "aws"
+	helmValues.Backup.BucketName = "demo2"
+	helmValues.Backup.Database = "neo4j1"
 
-	_, err = helmClient.Install(t, backupReleaseName.String(), namespace, helmValues)
-	if err != nil {
-		return err
-	}
+	helmClient := model.NewHelmClient(model.DefaultNeo4jBackupChartName)
+	_, err = helmClient.Install(t, releaseName.String(), namespace, helmValues)
+	assert.NoError(t, err, "error installing helm chart with multiple backup endpoints")
 
 	time.Sleep(2 * time.Minute)
-	cronjob, err := Clientset.BatchV1().CronJobs(namespace).Get(context.Background(), backupReleaseName.String(), metav1.GetOptions{})
-	if err != nil {
-		return fmt.Errorf("cannot retrieve backup cronjob: %v", err)
-	}
+	cronjob, err := Clientset.BatchV1().CronJobs(namespace).Get(context.Background(), releaseName.String(), metav1.GetOptions{})
+	assert.NoError(t, err, "cannot retrieve cronjob for multiple backup endpoints")
 
-	if !assert.Equal(t, cronjob.Spec.Schedule, helmValues.Neo4J.JobSchedule,
-		fmt.Sprintf("cronjob schedule %s not matching with the schedule defined in values.yaml %s",
-			cronjob.Spec.Schedule, helmValues.Neo4J.JobSchedule)) {
-		return fmt.Errorf("cronjob schedule mismatch")
-	}
+	// Verify cronjob env vars
+	assert.Contains(t, cronjob.Spec.JobTemplate.Spec.Template.Spec.Containers[0].Env, corev1.EnvVar{
+		Name:  "DATABASE_BACKUP_ENDPOINTS",
+		Value: backupEndpoints,
+	}, "backup endpoints not set correctly in cronjob")
 
-	container := cronjob.Spec.JobTemplate.Spec.Template.Spec.Containers[0]
+	// Verify backup functionality
+	pods, err := Clientset.CoreV1().Pods(namespace).List(context.Background(), metav1.ListOptions{})
+	assert.NoError(t, err, "error while retrieving pod list")
+
 	var found bool
-	for _, env := range container.Env {
-		if env.Name == "DATABASE_BACKUP_ENDPOINTS" {
+	for _, pod := range pods.Items {
+		if strings.Contains(pod.Name, releaseName.String()) {
 			found = true
-			if !assert.Equal(t, helmValues.Backup.DatabaseBackupEndpoints, env.Value) {
-				return fmt.Errorf("DATABASE_BACKUP_ENDPOINTS value mismatch")
-			}
+			out, err := exec.Command("kubectl", "logs", pod.Name, "--namespace", namespace).CombinedOutput()
+			assert.NoError(t, err, "error getting backup pod logs")
+			assert.NotNil(t, out, "backup logs cannot be retrieved")
+			assert.Contains(t, string(out), "Backup Completed")
 			break
 		}
 	}
-	if !assert.True(t, found, "DATABASE_BACKUP_ENDPOINTS environment variable not found") {
-		return fmt.Errorf("DATABASE_BACKUP_ENDPOINTS environment variable not found")
-	}
-
-	return nil
+	assert.True(t, found, "no backup pod found")
 }

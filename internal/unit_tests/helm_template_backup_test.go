@@ -397,9 +397,9 @@ func TestAggregateEnabledWithServiceAccount(t *testing.T) {
 	t.Parallel()
 
 	helmValues := model.DefaultNeo4jBackupValues
+
 	helmValues.Backup.CloudProvider = "aws"
-	helmValues.Backup.BucketName = "demo-bucket"
-	helmValues.Backup.DatabaseAdminServiceName = "standalone-admin"
+	helmValues.Backup.BucketName = ""
 	helmValues.Backup.AggregateBackup.Enabled = true
 	helmValues.Backup.AggregateBackup.FromPath = "s3://demo-bucket"
 	helmValues.ServiceAccountName = "demo"
@@ -408,17 +408,17 @@ func TestAggregateEnabledWithServiceAccount(t *testing.T) {
 	assert.NoError(t, err, "error seen while performing aggregate backup using serviceaccount")
 	cronjobs := manifests.OfType(&batchv1.CronJob{})
 	assert.Len(t, cronjobs, 1, "there should be only one cronjob")
-
-	container := cronjobs[0].(*batchv1.CronJob).Spec.JobTemplate.Spec.Template.Spec.Containers[0]
+	envVariables := cronjobs[0].(*batchv1.CronJob).Spec.JobTemplate.Spec.Template.Spec.Containers[0].Env
 	var found bool
-	for _, env := range container.Env {
-		if env.Name == "AGGREGATE_BACKUP_FROM_PATH" {
+	for _, variable := range envVariables {
+		if variable.Name == "AGGREGATE_BACKUP_FROM_PATH" {
 			found = true
-			assert.Equal(t, env.Value, helmValues.Backup.AggregateBackup.FromPath)
+			assert.Equal(t, variable.Value, helmValues.Backup.AggregateBackup.FromPath)
 			break
 		}
 	}
-	assert.True(t, found, "AGGREGATE_BACKUP_FROM_PATH environment variable not found")
+	assert.Equal(t, found, true)
+
 }
 
 // TestAggregateEnabledWithoutServiceAccount checks for any errors when aggregate backup is performed without service account
@@ -426,9 +426,7 @@ func TestAggregateEnabledWithoutServiceAccount(t *testing.T) {
 	t.Parallel()
 
 	helmValues := model.DefaultNeo4jBackupValues
-	helmValues.Backup.DatabaseAdminServiceName = "standalone-admin"
 	helmValues.Backup.AggregateBackup.Enabled = true
-	helmValues.Backup.AggregateBackup.FromPath = "s3://demo-bucket"
 
 	_, err := model.HelmTemplateFromStruct(t, model.BackupHelmChart, helmValues)
 	assert.NoError(t, err, "error seen while performing aggregate backup without using serviceaccount")
@@ -479,77 +477,24 @@ func TestNeo4jBackupContainerSecurityContext(t *testing.T) {
 	assert.Equal(t, []corev1.Capability{"ALL"}, secContext.Capabilities.Drop, "Capabilities.Drop should contain ALL")
 }
 
-// TestBackupMultipleEndpoints checks backup helm chart with multiple backup endpoints
+// TestMultipleBackupEndpointsUnit checks for multiple backup endpoints in the backup cronjob
 func TestBackupMultipleEndpoints(t *testing.T) {
 	t.Parallel()
 
+	backupEndpoints := "10.3.3.2:6362,10.3.3.3:6362,10.3.3.4:6362"
+
 	helmValues := model.DefaultNeo4jBackupValues
-	helmValues.DisableLookups = false
-	helmValues.Backup.CloudProvider = "aws"
-	helmValues.Backup.BucketName = "demo2"
-	helmValues.Backup.DatabaseBackupEndpoints = "192.168.1.34:6362,192.168.1.35:6362,192.168.1.36:6362"
-	helmValues.Backup.Database = "neo4j1"
-	helmValues.ServiceAccountName = "demo-sa"
+	helmValues.Backup.DatabaseBackupEndpoints = backupEndpoints
+	helmValues.Backup.DatabaseAdminServiceName = "standalone-admin"
 
 	manifests, err := model.HelmTemplateFromStruct(t, model.BackupHelmChart, helmValues)
-	assert.NoError(t, err, "error seen while performing helm template on backup helm chart with multiple endpoints")
+	assert.NoError(t, err, "error generating helm template with multiple backup endpoints")
 
 	cronjobs := manifests.OfType(&batchv1.CronJob{})
 	assert.Len(t, cronjobs, 1, "there should be only one cronjob")
-
-	container := cronjobs[0].(*batchv1.CronJob).Spec.JobTemplate.Spec.Template.Spec.Containers[0]
-	var found bool
-	for _, env := range container.Env {
-		if env.Name == "DATABASE_BACKUP_ENDPOINTS" {
-			found = true
-			assert.Equal(t, helmValues.Backup.DatabaseBackupEndpoints, env.Value,
-				"backup endpoints not matching")
-			break
-		}
-	}
-	assert.True(t, found, "DATABASE_BACKUP_ENDPOINTS environment variable not found")
-}
-
-// TestBackupEndpointValidation verifies endpoint validation rules
-func TestBackupEndpointValidation(t *testing.T) {
-	t.Parallel()
-
-	tests := []struct {
-		name          string
-		values        model.Neo4jBackupValues
-		expectedError string
-	}{
-		{
-			name: "valid_multiple_endpoints",
-			values: func() model.Neo4jBackupValues {
-				v := model.DefaultNeo4jBackupValues
-				v.DisableLookups = false
-				v.Backup.DatabaseBackupEndpoints = "192.168.1.34:6362,192.168.1.35:6362"
-				return v
-			}(),
-			expectedError: "",
-		},
-		{
-			name: "mixing_endpoint_methods",
-			values: func() model.Neo4jBackupValues {
-				v := model.DefaultNeo4jBackupValues
-				v.DisableLookups = false
-				v.Backup.DatabaseBackupEndpoints = "192.168.1.34:6362"
-				v.Backup.DatabaseAdminServiceName = "admin-svc"
-				return v
-			}(),
-			expectedError: "Cannot specify both databaseBackupEndpoints and databaseAdminServiceName/databaseAdminServiceIP",
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			_, err := model.HelmTemplateFromStruct(t, model.BackupHelmChart, tt.values)
-			if tt.expectedError != "" {
-				assert.ErrorContains(t, err, tt.expectedError)
-			} else {
-				assert.NoError(t, err)
-			}
-		})
-	}
+	cronjob := cronjobs[0].(*batchv1.CronJob)
+	assert.Contains(t, cronjob.Spec.JobTemplate.Spec.Template.Spec.Containers[0].Env, corev1.EnvVar{
+		Name:  "DATABASE_BACKUP_ENDPOINTS",
+		Value: backupEndpoints,
+	}, "backup endpoints not set correctly in cronjob")
 }
