@@ -574,6 +574,11 @@ func runSubTests(t *testing.T, subTests []SubTest) {
 }
 
 func installNeo4j(t *testing.T, releaseName model.ReleaseName, chart model.Neo4jHelmChartBuilder, extraHelmInstallArgs ...string) (Closeable, error) {
+	err := waitForClusterConnection(t)
+	if err != nil {
+		return nil, fmt.Errorf("failed to connect to cluster: %v", err)
+	}
+
 	closeables := []Closeable{}
 	addCloseable := func(closeable Closeable) {
 		closeables = append([]Closeable{closeable}, closeables...)
