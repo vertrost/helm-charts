@@ -59,11 +59,14 @@
 
 {{- define "neo4j.backup.checkDatabaseIPAndServiceName" -}}
     {{/* Check for multiple endpoints or admin service configuration */}}
-    {{- if .Values.disableLookups -}}
+    {{- if and .Values.backup.aggregateBackup .Values.backup.aggregateBackup.enabled -}}
+        {{/* No validation needed for aggregate backup */}}
+    {{- else if .Values.disableLookups -}}
         {{- if and (empty (.Values.backup.databaseAdminServiceName | trim)) (empty (.Values.backup.databaseAdminServiceIP | trim)) -}}
             {{- fail "Empty fields. Please set databaseAdminServiceName" -}}
         {{- end -}}
     {{- else -}}
+        {{/* Check for required fields */}}
         {{- if and (empty (.Values.backup.databaseBackupEndpoints | trim)) (empty (.Values.backup.databaseAdminServiceName | trim)) (empty (.Values.backup.databaseAdminServiceIP | trim)) -}}
             {{- fail "Empty fields. Please set either databaseBackupEndpoints or databaseAdminServiceName/databaseAdminServiceIP" -}}
         {{- end -}}
