@@ -58,19 +58,19 @@
 {{- end -}}
 
 {{- define "neo4j.backup.checkDatabaseIPAndServiceName" -}}
-    {{/* Skip validation for aggregate backup */}}
-    {{- if and .Values.backup.aggregateBackup .Values.backup.aggregateBackup.enabled -}}
-        {{/* Skip all validation for aggregate backup */}}
-    {{- else if .Values.disableLookups -}}
+    {{/* Check for multiple endpoints or admin service configuration */}}
+    {{- if .Values.disableLookups -}}
         {{- if and (empty (.Values.backup.databaseAdminServiceName | trim)) (empty (.Values.backup.databaseAdminServiceIP | trim)) -}}
-            {{- fail (printf "Empty fields. Please set databaseAdminServiceName") -}}
+            {{- fail "Empty fields. Please set databaseAdminServiceName" -}}
         {{- end -}}
     {{- else -}}
         {{- if and (empty (.Values.backup.databaseBackupEndpoints | trim)) (empty (.Values.backup.databaseAdminServiceName | trim)) (empty (.Values.backup.databaseAdminServiceIP | trim)) -}}
-            {{- fail (printf "Empty fields. Please set either databaseBackupEndpoints or databaseAdminServiceName/databaseAdminServiceIP") -}}
+            {{- fail "Empty fields. Please set either databaseBackupEndpoints or databaseAdminServiceName/databaseAdminServiceIP" -}}
         {{- end -}}
+        
+        {{/* Prevent mixing of endpoint methods */}}
         {{- if and (.Values.backup.databaseBackupEndpoints) (or .Values.backup.databaseAdminServiceName .Values.backup.databaseAdminServiceIP) -}}
-            {{- fail (printf "Cannot specify both databaseBackupEndpoints and databaseAdminServiceName/databaseAdminServiceIP") -}}
+            {{- fail "Cannot specify both databaseBackupEndpoints and databaseAdminServiceName/databaseAdminServiceIP" -}}
         {{- end -}}
     {{- end -}}
 {{- end -}}

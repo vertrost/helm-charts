@@ -509,3 +509,47 @@ func TestBackupMultipleEndpoints(t *testing.T) {
 	}
 	assert.True(t, found, "DATABASE_BACKUP_ENDPOINTS environment variable not found")
 }
+
+// TestBackupEndpointValidation verifies endpoint validation rules
+func TestBackupEndpointValidation(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		name          string
+		values        model.Neo4jBackupValues
+		expectedError string
+	}{
+		{
+			name: "valid_multiple_endpoints",
+			values: func() model.Neo4jBackupValues {
+				v := model.DefaultNeo4jBackupValues
+				v.DisableLookups = false
+				v.Backup.DatabaseBackupEndpoints = "192.168.1.34:6362,192.168.1.35:6362"
+				return v
+			}(),
+			expectedError: "",
+		},
+		{
+			name: "mixing_endpoint_methods",
+			values: func() model.Neo4jBackupValues {
+				v := model.DefaultNeo4jBackupValues
+				v.DisableLookups = false
+				v.Backup.DatabaseBackupEndpoints = "192.168.1.34:6362"
+				v.Backup.DatabaseAdminServiceName = "admin-svc"
+				return v
+			}(),
+			expectedError: "Cannot specify both databaseBackupEndpoints and databaseAdminServiceName/databaseAdminServiceIP",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			_, err := model.HelmTemplateFromStruct(t, model.BackupHelmChart, tt.values)
+			if tt.expectedError != "" {
+				assert.ErrorContains(t, err, tt.expectedError)
+			} else {
+				assert.NoError(t, err)
+			}
+		})
+	}
+}
