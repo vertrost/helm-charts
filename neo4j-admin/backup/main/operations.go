@@ -116,6 +116,9 @@ func onPrem() {
 // backupOperations returns backupFileNames , consistencyCheckReports and error
 // performs aggregate backup is aggregate backup is enabled
 func backupOperations() ([]string, []string, error) {
+	if err := deleteBackupFiles([]string{}, []string{}); err != nil {
+		log.Printf("Warning: failed to cleanup existing backups: %v", err)
+	}
 
 	address, err := generateAddress()
 	if err != nil {
