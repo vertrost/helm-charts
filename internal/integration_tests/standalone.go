@@ -650,6 +650,10 @@ func k8sTests(name model.ReleaseName, chart model.Neo4jHelmChartBuilder) ([]SubT
 			t.Parallel()
 			assert.NoError(t, InstallReverseProxyHelmChart(t, name), "Reverse Proxy installation with ingress should succeed")
 		}},
+		{name: "Install Backup With File Cleanup", test: func(t *testing.T) {
+			t.Parallel()
+			assert.NoError(t, InstallNeo4jBackupWithFileCleanup(t, name), "Backup with file cleanup should succeed")
+		}},
 	}, err
 }
 
@@ -1293,5 +1297,48 @@ func deleteAWSBucket(accessKey string, secretKey string, region string, bucketNa
 		return err
 	}
 	log.Printf("AWS bucket %s deleted", bucketName)
+	return nil
+}
+
+func InstallNeo4jBackupWithFileCleanup(t *testing.T, standaloneReleaseName model.ReleaseName) error {
+	backupReleaseName := model.NewReleaseName("standalone-backup-cleanup-" + TestRunIdentifier)
+	namespace := backupReleaseName.Namespace()
+
+	helmClient := model.NewHelmClient(model.DefaultNeo4jBackupChartName)
+	helmValues := model.DefaultNeo4jBackupValues
+	helmValues.Backup = model.Backup{
+		BucketName:               model.BucketName,
+		DatabaseAdminServiceName: fmt.Sprintf("%s-admin", standaloneReleaseName.String()),
+		DatabaseNamespace:        string(namespace),
+		Database:                 "neo4j,system",
+		CloudProvider:            "gcp",
+		Verbose:                  true,
+		Type:                     "FULL",
+		KeepBackupFiles:          false,
+	}
+
+	_, err := helmClient.Install(t, backupReleaseName.String(), string(namespace), helmValues)
+	if err != nil {
+		return err
+	}
+
+	time.Sleep(2 * time.Minute)
+
+	// Check files exist after backup but before deletion
+	cmd := []string{"ls", "-la", "/backups"}
+	stdout, stderr, err := ExecInPod(backupReleaseName, cmd, "")
+	assert.NoError(t, err, "error executing command in pod")
+	assert.Empty(t, stderr, "should not have stderr output")
+	assert.Contains(t, stdout, ".backup", "backup files should exist before deletion")
+
+	// Wait for deletion to complete
+	time.Sleep(30 * time.Second)
+
+	// Verify files are gone
+	stdout, stderr, err = ExecInPod(backupReleaseName, cmd, "")
+	assert.NoError(t, err, "error executing command in pod")
+	assert.Empty(t, stderr, "should not have stderr output")
+	assert.NotContains(t, stdout, ".backup", "backup files should be deleted")
+
 	return nil
 }
