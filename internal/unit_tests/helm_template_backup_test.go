@@ -476,3 +476,25 @@ func TestNeo4jBackupContainerSecurityContext(t *testing.T) {
 	assert.False(t, *secContext.AllowPrivilegeEscalation, "AllowPrivilegeEscalation should be false")
 	assert.Equal(t, []corev1.Capability{"ALL"}, secContext.Capabilities.Drop, "Capabilities.Drop should contain ALL")
 }
+
+// TestMultipleBackupEndpointsUnit checks for multiple backup endpoints in the backup cronjob
+func TestBackupMultipleEndpoints(t *testing.T) {
+	t.Parallel()
+
+	backupEndpoints := "10.3.3.2:6362,10.3.3.3:6362,10.3.3.4:6362"
+
+	helmValues := model.DefaultNeo4jBackupValues
+	helmValues.Backup.DatabaseBackupEndpoints = backupEndpoints
+	helmValues.Backup.DatabaseAdminServiceName = "standalone-admin"
+
+	manifests, err := model.HelmTemplateFromStruct(t, model.BackupHelmChart, helmValues)
+	assert.NoError(t, err, "error generating helm template with multiple backup endpoints")
+
+	cronjobs := manifests.OfType(&batchv1.CronJob{})
+	assert.Len(t, cronjobs, 1, "there should be only one cronjob")
+	cronjob := cronjobs[0].(*batchv1.CronJob)
+	assert.Contains(t, cronjob.Spec.JobTemplate.Spec.Template.Spec.Containers[0].Env, corev1.EnvVar{
+		Name:  "DATABASE_BACKUP_ENDPOINTS",
+		Value: backupEndpoints,
+	}, "backup endpoints not set correctly in cronjob")
+}

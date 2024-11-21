@@ -33,7 +33,9 @@ backup:
   # bucket: azure-storage-container
   bucketName: ""
 
-  #address details of the neo4j instance from which backup is to be done (serviceName or ip either one is required)
+  # Specify multiple backup endpoints as comma-separated string
+  # e.g. "10.3.3.2:6362,10.3.3.3:6362,10.3.3.4:6362"
+  databaseBackupEndpoints: ""
 
   #ex: standalone-admin.default.svc.cluster.local:6362
   # admin service name -  standalone-admin

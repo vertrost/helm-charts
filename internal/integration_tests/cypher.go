@@ -4,13 +4,14 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/neo4j/helm-charts/internal/model"
-	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
-	"github.com/stretchr/testify/assert"
 	"strings"
 	"sync/atomic"
 	"testing"
 	"time"
+
+	"github.com/neo4j/helm-charts/internal/model"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
+	"github.com/stretchr/testify/assert"
 )
 
 // Auth stuff
@@ -202,19 +203,38 @@ func checkNodeCount(t *testing.T, releaseName model.ReleaseName) error {
 
 // checkLdapPassword runs a cypher query to get ldapPassword and checks if the ldapPassword is set or not
 func checkLdapPassword(t *testing.T, releaseName model.ReleaseName) error {
-	result, err := runQuery(t, releaseName, "CALL dbms.listConfig('dbms.security.ldap.authorization.system_password') YIELD value", noParams, model.Neo4jEdition == "community")
-	if err != nil {
-		return err
+	time.Sleep(30 * time.Second)
+
+	maxRetries := 3
+	var lastErr error
+
+	for i := 0; i < maxRetries; i++ {
+		result, err := runQuery(t, releaseName,
+			"CALL dbms.listConfig('dbms.security.ldap.authorization.system_password') YIELD value",
+			noParams,
+			model.Neo4jEdition == "community")
+
+		if err != nil {
+			if strings.Contains(err.Error(), "NotALeader") {
+				t.Logf("Attempt %d: Hit non-leader node, retrying...", i+1)
+				time.Sleep(10 * time.Second)
+				lastErr = err
+				continue
+			}
+			return err
+		}
+
+		value, found := result[0].Get("value")
+		if !found {
+			return fmt.Errorf("expected at least one result")
+		}
+
+		ldapPass := value.(string)
+		assert.NotEqual(t, ldapPass, "No Value", "LdapPassword not set !!")
+		return nil
 	}
 
-	value, found := result[0].Get("value")
-	if !found {
-		return fmt.Errorf("expected at least one result")
-	}
-
-	ldapPass := value.(string)
-	assert.NotEqual(t, ldapPass, "No Value", "LdapPassword not set !!")
-	return nil
+	return fmt.Errorf("failed to check LDAP password after %d attempts: %v", maxRetries, lastErr)
 }
 
 // checkBloomVersion runs the cypher query to get bloom license info

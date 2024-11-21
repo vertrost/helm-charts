@@ -72,6 +72,7 @@ type Backup struct {
 	DatabaseNamespace        string          `yaml:"databaseNamespace,omitempty" default:"default"`
 	DatabaseBackupPort       string          `yaml:"databaseBackupPort,omitempty" default:"6362"`
 	DatabaseClusterDomain    string          `yaml:"databaseClusterDomain,omitempty" default:"cluster.local"`
+	DatabaseBackupEndpoints  string          `yaml:"databaseBackupEndpoints,omitempty"`
 	Database                 string          `yaml:"database,omitempty"`
 	AzureStorageAccountName  string          `yaml:"azureStorageAccountName,omitempty"`
 	CloudProvider            string          `yaml:"cloudProvider,omitempty"`

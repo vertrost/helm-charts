@@ -116,6 +116,8 @@ spec:
                   value: "{{ .Values.backup.aggregate.fromPath | default "/backups" | trim }}"
                 - name: AGGREGATE_BACKUP_DATABASE
                   value: "{{ .Values.backup.aggregate.database | default "*" | trim  }}"
+                - name: DATABASE_BACKUP_ENDPOINTS
+                  value: {{ .Values.backup.databaseBackupEndpoints | trim }}
               volumeMounts:
                 {{- if .Values.backup.secretName }}
                 - name: credentials

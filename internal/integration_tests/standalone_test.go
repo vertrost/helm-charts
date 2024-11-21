@@ -2,12 +2,14 @@ package integration_tests
 
 import (
 	"fmt"
+	"testing"
+	"time"
+
 	"github.com/neo4j/helm-charts/internal/integration_tests/gcloud"
 	"github.com/neo4j/helm-charts/internal/model"
 	"github.com/neo4j/helm-charts/internal/resources"
 	"github.com/stretchr/testify/assert"
 )
-import "testing"
 
 // Install Neo4j on the provided GKE K8s cluster and then run the tests from the table above using it
 func TestInstallStandaloneOnGCloudK8s(t *testing.T) {
@@ -39,18 +41,33 @@ func TestInstallStandaloneOnGCloudK8s(t *testing.T) {
 
 func standaloneCleanup(t *testing.T, releaseName model.ReleaseName) func() {
 	return func() {
+		namespace := string(releaseName.Namespace())
+
+		_ = runAll(t, "kubectl", [][]string{
+			{"scale", "statefulset", releaseName.String(), "--namespace", namespace, "--replicas=0"},
+		}, false)
+
+		time.Sleep(30 * time.Second)
+
 		_ = runAll(t, "helm", [][]string{
-			{"uninstall", releaseName.String(), "--wait", "--timeout", "3m", "--namespace", string(releaseName.Namespace())},
+			{"uninstall", releaseName.String(), "--wait", "--timeout", "3m", "--namespace", namespace},
 		}, false)
+
+		time.Sleep(10 * time.Second)
+
 		_ = runAll(t, "kubectl", [][]string{
-			{"delete", "pvc", fmt.Sprintf("%s-pvc", releaseName.String()), "--namespace", string(releaseName.Namespace()), "--ignore-not-found"},
-			{"delete", "pv", fmt.Sprintf("%s-pv", releaseName.String()), "--ignore-not-found"},
+			{"delete", "statefulset", releaseName.String(), "--namespace", namespace, "--wait=true", "--timeout=60s", "--ignore-not-found"},
+			{"delete", "pod", "--all", "--namespace", namespace, "--wait=true", "--timeout=60s", "--ignore-not-found"},
+			{"delete", "pvc", "--all", "--namespace", namespace, "--wait=true", "--timeout=60s", "--ignore-not-found"},
+			{"delete", "pv", "--all", "--wait=true", "--timeout=60s", "--ignore-not-found"},
 		}, false)
+
+		_ = runAll(t, "kubectl", [][]string{
+			{"delete", "namespace", namespace, "--ignore-not-found"},
+		}, false)
+
 		_ = runAll(t, "gcloud", [][]string{
-			{"compute", "disks", "delete", fmt.Sprintf("neo4j-data-disk-%s", releaseName), "--zone=" + string(gcloud.CurrentZone()), "--project=" + string(gcloud.CurrentProject())},
-		}, false)
-		_ = runAll(t, "kubectl", [][]string{
-			{"delete", "namespace", string(releaseName.Namespace()), "--ignore-not-found", "--force", "--grace-period=0"},
+			{"compute", "disks", "delete", fmt.Sprintf("neo4j-data-disk-%s", releaseName), "--zone=" + string(gcloud.CurrentZone()), "--project=" + string(gcloud.CurrentProject()), "--quiet"},
 		}, false)
 	}
 }

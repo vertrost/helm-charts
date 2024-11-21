@@ -4,14 +4,6 @@ import (
 	"context"
 	"encoding/base64"
 	"fmt"
-	"github.com/hashicorp/go-multierror"
-	. "github.com/neo4j/helm-charts/internal/helpers"
-	"github.com/neo4j/helm-charts/internal/integration_tests/gcloud"
-	"github.com/neo4j/helm-charts/internal/model"
-	"github.com/stretchr/testify/assert"
-	v1 "k8s.io/api/core/v1"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/apimachinery/pkg/labels"
 	"log"
 	"os"
 	"os/exec"
@@ -19,6 +11,16 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/hashicorp/go-multierror"
+	. "github.com/neo4j/helm-charts/internal/helpers"
+	"github.com/neo4j/helm-charts/internal/integration_tests/gcloud"
+	"github.com/neo4j/helm-charts/internal/model"
+	"github.com/stretchr/testify/assert"
+	corev1 "k8s.io/api/core/v1"
+	v1 "k8s.io/api/core/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/labels"
 )
 
 // labelNodes labels all the node with testLabel=namespace-<number>
@@ -853,4 +855,64 @@ func printStdOutStdErr(stdOut []byte, stderr []byte, command []string) {
 	log.Println("Command = ", command)
 	log.Println("stdout = ", string(stdOut))
 	log.Println("stderr = ", string(stderr))
+}
+
+func TestBackupMultipleEndpointsE2E(t *testing.T) {
+	t.Parallel()
+
+	releaseName := model.NewReleaseName("multiple-backup-endpoints-" + TestRunIdentifier)
+	_, err := createNamespace(t, releaseName)
+	if err != nil {
+		return
+	}
+	namespace := string(releaseName.Namespace())
+
+	// Add cleanup
+	t.Cleanup(func() {
+		_ = runAll(t, "helm", [][]string{
+			{"uninstall", releaseName.String(), "--wait", "--timeout", "3m", "--namespace", namespace},
+			{"delete", "namespace", namespace},
+		}, false)
+	})
+
+	backupEndpoints := "10.3.3.2:6362,10.3.3.3:6362,10.3.3.4:6362"
+
+	helmValues := model.DefaultNeo4jBackupValues
+	helmValues.Backup.DatabaseBackupEndpoints = backupEndpoints
+	helmValues.Backup.DatabaseAdminServiceName = "standalone-admin"
+	helmValues.Backup.SecretName = "demo"
+	helmValues.Backup.CloudProvider = "aws"
+	helmValues.Backup.BucketName = "demo2"
+	helmValues.Backup.Database = "neo4j1"
+
+	helmClient := model.NewHelmClient(model.DefaultNeo4jBackupChartName)
+	_, err = helmClient.Install(t, releaseName.String(), namespace, helmValues)
+	assert.NoError(t, err, "error installing helm chart with multiple backup endpoints")
+
+	time.Sleep(2 * time.Minute)
+	cronjob, err := Clientset.BatchV1().CronJobs(namespace).Get(context.Background(), releaseName.String(), metav1.GetOptions{})
+	assert.NoError(t, err, "cannot retrieve cronjob for multiple backup endpoints")
+
+	// Verify cronjob env vars
+	assert.Contains(t, cronjob.Spec.JobTemplate.Spec.Template.Spec.Containers[0].Env, corev1.EnvVar{
+		Name:  "DATABASE_BACKUP_ENDPOINTS",
+		Value: backupEndpoints,
+	}, "backup endpoints not set correctly in cronjob")
+
+	// Verify backup functionality
+	pods, err := Clientset.CoreV1().Pods(namespace).List(context.Background(), metav1.ListOptions{})
+	assert.NoError(t, err, "error while retrieving pod list")
+
+	var found bool
+	for _, pod := range pods.Items {
+		if strings.Contains(pod.Name, releaseName.String()) {
+			found = true
+			out, err := exec.Command("kubectl", "logs", pod.Name, "--namespace", namespace).CombinedOutput()
+			assert.NoError(t, err, "error getting backup pod logs")
+			assert.NotNil(t, out, "backup logs cannot be retrieved")
+			assert.Contains(t, string(out), "Backup Completed")
+			break
+		}
+	}
+	assert.True(t, found, "no backup pod found")
 }
