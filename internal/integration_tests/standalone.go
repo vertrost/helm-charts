@@ -1304,9 +1304,19 @@ func InstallNeo4jBackupWithFileCleanup(t *testing.T, standaloneReleaseName model
 	backupReleaseName := model.NewReleaseName(fmt.Sprintf("backup-%s", standaloneReleaseName))
 	namespace := string(backupReleaseName.Namespace())
 
+	t.Cleanup(func() {
+		_ = runAll(t, "helm", [][]string{
+			{"uninstall", backupReleaseName.String(), "--wait", "--timeout", "3m", "--namespace", namespace},
+			{"delete", "namespace", namespace},
+		}, false)
+	})
+
+	if _, err := createNamespace(t, backupReleaseName); err != nil {
+		return err
+	}
+
 	helmClient := model.NewHelmClient(model.DefaultNeo4jBackupChartName)
 	helmValues := model.DefaultNeo4jBackupValues
-
 	helmValues.Backup.SecretName = "backup-secret"
 	helmValues.Backup.SecretKeyName = "credentials"
 	helmValues.Backup.CloudProvider = "gcp"
