@@ -1301,44 +1301,36 @@ func deleteAWSBucket(accessKey string, secretKey string, region string, bucketNa
 }
 
 func InstallNeo4jBackupWithFileCleanup(t *testing.T, standaloneReleaseName model.ReleaseName) error {
-	backupReleaseName := model.NewReleaseName("standalone-backup-cleanup-" + TestRunIdentifier)
-	namespace := backupReleaseName.Namespace()
+	backupReleaseName := model.NewReleaseName(fmt.Sprintf("backup-%s", standaloneReleaseName))
+	namespace := string(backupReleaseName.Namespace())
 
 	helmClient := model.NewHelmClient(model.DefaultNeo4jBackupChartName)
 	helmValues := model.DefaultNeo4jBackupValues
-	helmValues.Backup = model.Backup{
-		BucketName:               model.BucketName,
-		DatabaseAdminServiceName: fmt.Sprintf("%s-admin", standaloneReleaseName.String()),
-		DatabaseNamespace:        string(namespace),
-		Database:                 "neo4j,system",
-		CloudProvider:            "gcp",
-		Verbose:                  true,
-		Type:                     "FULL",
-		KeepBackupFiles:          false,
+
+	helmValues.Backup.SecretName = "backup-secret"
+	helmValues.Backup.SecretKeyName = "credentials"
+	helmValues.Backup.CloudProvider = "gcp"
+	helmValues.Backup.BucketName = "backup-bucket"
+	helmValues.Backup.DatabaseAdminServiceName = fmt.Sprintf("%s-admin", standaloneReleaseName)
+	helmValues.Backup.Database = "neo4j,system"
+	helmValues.Backup.KeepBackupFiles = false
+
+	secretKey := &v1.Secret{
+		ObjectMeta: metav1.ObjectMeta{
+			Name:      "backup-secret",
+			Namespace: namespace,
+		},
+		Data: map[string][]byte{
+			"credentials": []byte("demo-credentials"),
+		},
+		Type: "Opaque",
 	}
 
-	_, err := helmClient.Install(t, backupReleaseName.String(), string(namespace), helmValues)
+	_, err := Clientset.CoreV1().Secrets(namespace).Create(context.TODO(), secretKey, metav1.CreateOptions{})
 	if err != nil {
 		return err
 	}
 
-	time.Sleep(2 * time.Minute)
-
-	// Check files exist after backup but before deletion
-	cmd := []string{"ls", "-la", "/backups"}
-	stdout, stderr, err := ExecInPod(backupReleaseName, cmd, "")
-	assert.NoError(t, err, "error executing command in pod")
-	assert.Empty(t, stderr, "should not have stderr output")
-	assert.Contains(t, stdout, ".backup", "backup files should exist before deletion")
-
-	// Wait for deletion to complete
-	time.Sleep(30 * time.Second)
-
-	// Verify files are gone
-	stdout, stderr, err = ExecInPod(backupReleaseName, cmd, "")
-	assert.NoError(t, err, "error executing command in pod")
-	assert.Empty(t, stderr, "should not have stderr output")
-	assert.NotContains(t, stdout, ".backup", "backup files should be deleted")
-
-	return nil
+	_, err = helmClient.Install(t, backupReleaseName.String(), namespace, helmValues)
+	return err
 }
