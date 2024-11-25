@@ -650,6 +650,10 @@ func k8sTests(name model.ReleaseName, chart model.Neo4jHelmChartBuilder) ([]SubT
 			t.Parallel()
 			assert.NoError(t, InstallReverseProxyHelmChart(t, name), "Reverse Proxy installation with ingress should succeed")
 		}},
+		{name: "Install Backup With File Cleanup", test: func(t *testing.T) {
+			t.Parallel()
+			assert.NoError(t, InstallNeo4jBackupWithFileCleanup(t, name), "Backup with file cleanup should succeed")
+		}},
 	}, err
 }
 
@@ -1294,4 +1298,49 @@ func deleteAWSBucket(accessKey string, secretKey string, region string, bucketNa
 	}
 	log.Printf("AWS bucket %s deleted", bucketName)
 	return nil
+}
+
+func InstallNeo4jBackupWithFileCleanup(t *testing.T, standaloneReleaseName model.ReleaseName) error {
+	backupReleaseName := model.NewReleaseName(fmt.Sprintf("backup-%s", standaloneReleaseName))
+	namespace := string(backupReleaseName.Namespace())
+
+	t.Cleanup(func() {
+		_ = runAll(t, "helm", [][]string{
+			{"uninstall", backupReleaseName.String(), "--wait", "--timeout", "3m", "--namespace", namespace},
+			{"delete", "namespace", namespace},
+		}, false)
+	})
+
+	if _, err := createNamespace(t, backupReleaseName); err != nil {
+		return err
+	}
+
+	helmClient := model.NewHelmClient(model.DefaultNeo4jBackupChartName)
+	helmValues := model.DefaultNeo4jBackupValues
+	helmValues.Backup.SecretName = "backup-secret"
+	helmValues.Backup.SecretKeyName = "credentials"
+	helmValues.Backup.CloudProvider = "gcp"
+	helmValues.Backup.BucketName = "backup-bucket"
+	helmValues.Backup.DatabaseAdminServiceName = fmt.Sprintf("%s-admin", standaloneReleaseName)
+	helmValues.Backup.Database = "neo4j,system"
+	helmValues.Backup.KeepBackupFiles = false
+
+	secretKey := &v1.Secret{
+		ObjectMeta: metav1.ObjectMeta{
+			Name:      "backup-secret",
+			Namespace: namespace,
+		},
+		Data: map[string][]byte{
+			"credentials": []byte("demo-credentials"),
+		},
+		Type: "Opaque",
+	}
+
+	_, err := Clientset.CoreV1().Secrets(namespace).Create(context.TODO(), secretKey, metav1.CreateOptions{})
+	if err != nil {
+		return err
+	}
+
+	_, err = helmClient.Install(t, backupReleaseName.String(), namespace, helmValues)
+	return err
 }
