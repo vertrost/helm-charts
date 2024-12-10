@@ -167,33 +167,42 @@ func TestInstallNeo4jClusterWithApocConfigInGcloud(t *testing.T) {
 
 func clusterTestCleanup(t *testing.T, clusterReleaseName model.ReleaseName, core1 clusterCore, core2 clusterCore, core3 clusterCore, removeLabels bool) func() {
 	return func() {
-		_ = runAll(t, "kubectl", [][]string{
-			{"scale", "statefulset", core1.name.String(), "--namespace", string(clusterReleaseName.Namespace()), "--replicas=0"},
-			{"scale", "statefulset", core2.name.String(), "--namespace", string(clusterReleaseName.Namespace()), "--replicas=0"},
-			{"scale", "statefulset", core3.name.String(), "--namespace", string(clusterReleaseName.Namespace()), "--replicas=0"},
-		}, false)
+		namespace := string(clusterReleaseName.Namespace())
 
-		time.Sleep(30 * time.Second)
+		err := run(t, "kubectl", "get", "namespace", namespace)
+		if err == nil {
+			for _, core := range []clusterCore{core1, core2, core3} {
+				_ = run(t, "kubectl", "get", "statefulset", core.name.String(), "--namespace", namespace)
+				if err == nil {
+					_ = runAll(t, "kubectl", [][]string{
+						{"scale", "statefulset", core.name.String(), "--namespace", namespace, "--replicas=0"},
+					}, false)
+				}
+			}
 
-		_ = runAll(t, "helm", [][]string{
-			{"uninstall", core1.name.String(), core2.name.String(), core3.name.String(), "--cascade=foreground", "--wait", "--timeout", "3m", "--namespace", string(clusterReleaseName.Namespace())},
-			{"uninstall", clusterReleaseName.String() + "-headless", "--cascade=foreground", "--wait", "--timeout", "1m", "--namespace", string(clusterReleaseName.Namespace())},
-		}, false)
+			time.Sleep(30 * time.Second)
 
-		_ = runAll(t, "kubectl", [][]string{
-			{"delete", "pvc", "--all", "--namespace", string(clusterReleaseName.Namespace()), "--force", "--grace-period=0"},
-			{"delete", "pv", "--all", "--force", "--grace-period=0"},
-		}, false)
+			_ = runAll(t, "helm", [][]string{
+				{"uninstall", core1.name.String(), core2.name.String(), core3.name.String(), "--cascade=foreground", "--wait", "--timeout", "3m", "--namespace", namespace},
+				{"uninstall", clusterReleaseName.String() + "-headless", "--cascade=foreground", "--wait", "--timeout", "1m", "--namespace", namespace},
+			}, false)
+
+			time.Sleep(10 * time.Second)
+
+			_ = runAll(t, "kubectl", [][]string{
+				{"delete", "pvc", "--all", "--namespace", namespace, "--force", "--grace-period=0", "--ignore-not-found"},
+				{"delete", "pv", "--all", "--force", "--grace-period=0", "--ignore-not-found"},
+			}, false)
+
+			_ = runAll(t, "kubectl", [][]string{
+				{"delete", "namespace", namespace, "--force", "--grace-period=0", "--ignore-not-found"},
+			}, false)
+		}
 
 		_ = runAll(t, "gcloud", [][]string{
 			{"compute", "disks", "delete", fmt.Sprintf("neo4j-data-disk-%s", core1.name), "--zone=" + string(gcloud.CurrentZone()), "--project=" + string(gcloud.CurrentProject()), "--quiet"},
 			{"compute", "disks", "delete", fmt.Sprintf("neo4j-data-disk-%s", core2.name), "--zone=" + string(gcloud.CurrentZone()), "--project=" + string(gcloud.CurrentProject()), "--quiet"},
 			{"compute", "disks", "delete", fmt.Sprintf("neo4j-data-disk-%s", core3.name), "--zone=" + string(gcloud.CurrentZone()), "--project=" + string(gcloud.CurrentProject()), "--quiet"},
-		}, false)
-
-		_ = runAll(t, "kubectl", [][]string{
-			{"delete", "namespace", string(clusterReleaseName.Namespace()), "--force", "--grace-period=0"},
-			{"delete", "priorityClass", "high-priority", "--force", "--grace-period=0"},
 		}, false)
 
 		if removeLabels {

@@ -43,28 +43,37 @@ func standaloneCleanup(t *testing.T, releaseName model.ReleaseName) func() {
 	return func() {
 		namespace := string(releaseName.Namespace())
 
-		_ = runAll(t, "kubectl", [][]string{
-			{"scale", "statefulset", releaseName.String(), "--namespace", namespace, "--replicas=0"},
-		}, false)
+		err := run(t, "kubectl", "get", "namespace", namespace)
+		if err == nil {
+			_ = run(t, "kubectl", "get", "statefulset", releaseName.String(), "--namespace", namespace)
+			if err == nil {
+				_ = runAll(t, "kubectl", [][]string{
+					{"scale", "statefulset", releaseName.String(), "--namespace", namespace, "--replicas=0"},
+				}, false)
 
-		time.Sleep(30 * time.Second)
+				time.Sleep(30 * time.Second)
+			}
 
-		_ = runAll(t, "helm", [][]string{
-			{"uninstall", releaseName.String(), "--wait", "--timeout", "3m", "--namespace", namespace},
-		}, false)
+			_ = runAll(t, "helm", [][]string{
+				{"uninstall", releaseName.String(), "--cascade=foreground", "--wait", "--timeout", "3m", "--namespace", namespace},
+			}, false)
 
-		time.Sleep(10 * time.Second)
+			time.Sleep(10 * time.Second)
 
-		_ = runAll(t, "kubectl", [][]string{
-			{"delete", "statefulset", releaseName.String(), "--namespace", namespace, "--wait=true", "--timeout=60s", "--ignore-not-found"},
-			{"delete", "pod", "--all", "--namespace", namespace, "--wait=true", "--timeout=60s", "--ignore-not-found"},
-			{"delete", "pvc", "--all", "--namespace", namespace, "--wait=true", "--timeout=60s", "--ignore-not-found"},
-			{"delete", "pv", "--all", "--wait=true", "--timeout=60s", "--ignore-not-found"},
-		}, false)
+			_ = runAll(t, "kubectl", [][]string{
+				{"delete", "statefulset", releaseName.String(), "--namespace", namespace, "--force", "--grace-period=0", "--ignore-not-found"},
+				{"delete", "pod", "--all", "--namespace", namespace, "--force", "--grace-period=0", "--ignore-not-found"},
+				{"delete", "pvc", "--all", "--namespace", namespace, "--force", "--grace-period=0", "--ignore-not-found"},
+			}, false)
 
-		_ = runAll(t, "kubectl", [][]string{
-			{"delete", "namespace", namespace, "--ignore-not-found"},
-		}, false)
+			_ = runAll(t, "kubectl", [][]string{
+				{"delete", "pv", "--all", "--force", "--grace-period=0", "--ignore-not-found"},
+			}, false)
+
+			_ = runAll(t, "kubectl", [][]string{
+				{"delete", "namespace", namespace, "--force", "--grace-period=0", "--ignore-not-found"},
+			}, false)
+		}
 
 		_ = runAll(t, "gcloud", [][]string{
 			{"compute", "disks", "delete", fmt.Sprintf("neo4j-data-disk-%s", releaseName), "--zone=" + string(gcloud.CurrentZone()), "--project=" + string(gcloud.CurrentProject()), "--quiet"},
